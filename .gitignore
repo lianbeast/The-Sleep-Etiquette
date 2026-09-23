@@ -1,0 +1,27 @@
+# --- Local agent / editor tooling (not part of the site) ---
+.remember/
+.impeccable/
+.opencode/
+.playwright-mcp/
+.workbuddy-ai/
+
+# --- OS cruft ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Editors ---
+.vscode/
+.idea/
+*.swp
+
+# --- Logs ---
+*.log
+
+# --- Node (if a build step is ever added) ---
+node_modules/
+npm-debug.log*
+
+# --- Build output ---
+dist/
+build/
