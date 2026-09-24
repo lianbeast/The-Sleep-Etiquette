@@ -780,11 +780,6 @@ button{color:inherit;cursor:pointer;border:none;background:none}
   font-size:clamp(26px,3.6vw,42px);letter-spacing:.24em;text-indent:.24em;
   text-transform:uppercase;margin:0;color:var(--ink);
 }
-.cs-hero-intro{
-  max-width:44ch;margin:clamp(14px,2vh,20px) auto 0;
-  font-size:clamp(14px,1.15vw,16px);line-height:1.65;color:var(--muted);
-  text-wrap:pretty;
-}
 
 /* Inline waitlist: one hairline row, no modal */
 .cs-form{
