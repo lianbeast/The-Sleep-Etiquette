@@ -264,43 +264,14 @@
     });
   }
 
-  /* ---------- coming soon: loader ---------- */
-  const loader = $('.cs-loader');
-  if (loader) {
-    const finish = () => loader.classList.add('is-done');
-    if (document.readyState === 'complete') requestAnimationFrame(finish);
-    else window.addEventListener('load', () => requestAnimationFrame(finish), { once: true });
-    /* safety: never trap the page behind the loader */
-    setTimeout(finish, 2500);
-  }
-
-  /* ---------- coming soon: reveal on scroll ---------- */
-  const revealEls = $$('[data-reveal]');
-  if (revealEls.length && 'IntersectionObserver' in window) {
-    document.documentElement.classList.add('js-reveal');
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-in-view');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
-    revealEls.forEach((el) => io.observe(el));
-  } else {
-    revealEls.forEach((el) => el.classList.add('is-in-view'));
-  }
-
-  /* ---------- coming soon: waitlist modal ---------- */
-  const waitlistModal = $('[data-waitlist-modal]');
+  /* ---------- coming soon: inline waitlist form ---------- */
   const waitlistForm = $('[data-waitlist-form]');
   const waitlistMessage = $('[data-waitlist-message]');
   const waitlistSuccess = $('[data-waitlist-success]');
-  const waitlistSubmit = waitlistForm && $('.waitlist-submit', waitlistForm);
-  let lastFocused = null;
+  const waitlistSubmit = waitlistForm && $('.waitlist-submit, .cs-join', waitlistForm);
 
   /* Where signups are sent.
-     - Set data-endpoint="https://…" on the form (or paste a URL below) to POST
+     - Set data-endpoint="https://…" on the form to POST
        { email, name, source, page, at } as JSON to a real collector — e.g. a
        Formspree endpoint, a Mailchimp/ConvertKit proxy, or your own API.
      - Leave it empty to run in local demo mode: nothing leaves the browser, the
@@ -325,65 +296,15 @@
     if (echo) echo.textContent = email || '';
   }
 
-  function showWaitlistForm() {
-    if (waitlistForm) waitlistForm.classList.remove('u-hidden');
-    if (waitlistSuccess) waitlistSuccess.classList.add('u-hidden');
-    if (waitlistMessage) waitlistMessage.textContent = '';
-    const email = $('#waitlist-email', waitlistModal);
-    if (email) email.classList.remove('invalid');
-  }
-
-  function openWaitlist() {
-    if (!waitlistModal) return;
-    lastFocused = document.activeElement;
-    waitlistModal.classList.add('is-open');
-    waitlistModal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-    const saved = readWaitlistStore();
-    if (saved && saved.email) {
-      showWaitlistSuccess(saved.email);
-      const close = $('[data-close-waitlist]', waitlistModal);
-      if (close) close.focus();
-    } else {
-      showWaitlistForm();
-      const email = $('#waitlist-email', waitlistModal);
-      if (email) email.focus();
-    }
-  }
-  function closeWaitlist() {
-    if (!waitlistModal || !waitlistModal.classList.contains('is-open')) return;
-    waitlistModal.classList.remove('is-open');
-    waitlistModal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-    if (lastFocused && lastFocused.focus) lastFocused.focus();
-  }
-
-  /* keep Tab focus inside the open modal */
-  if (waitlistModal) {
-    waitlistModal.addEventListener('keydown', (event) => {
-      if (event.key !== 'Tab' || !waitlistModal.classList.contains('is-open')) return;
-      const focusables = $$('button, input, [href]', waitlistModal).filter((el) => !el.disabled && el.offsetParent !== null);
-      if (!focusables.length) return;
-      const first = focusables[0];
-      const last = focusables[focusables.length - 1];
-      if (event.shiftKey && document.activeElement === first) {
-        event.preventDefault();
-        last.focus();
-      } else if (!event.shiftKey && document.activeElement === last) {
-        event.preventDefault();
-        first.focus();
-      }
-    });
-  }
-
-  $$('[data-open-waitlist]').forEach((button) => button.addEventListener('click', openWaitlist));
-  $$('[data-close-waitlist], [data-waitlist-backdrop]').forEach((el) => el.addEventListener('click', closeWaitlist));
+  /* returning visitor: skip the form they already filled in */
+  const saved = readWaitlistStore();
+  if (saved && saved.email) showWaitlistSuccess(saved.email);
 
   if (waitlistForm) {
     waitlistForm.addEventListener('submit', async (event) => {
       event.preventDefault();
-      const emailInput = $('#waitlist-email', waitlistModal);
-      const nameInput = $('#waitlist-name', waitlistModal);
+      const emailInput = $('#waitlist-email', waitlistForm);
+      const nameInput = $('#waitlist-name', waitlistForm);
       const value = String(new FormData(waitlistForm).get('email') || '').trim();
       const valid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value);
       if (!valid) {
@@ -438,7 +359,6 @@
     if (event.key !== 'Escape') return;
     closeCart();
     closeSearch();
-    closeWaitlist();
     if (accountMenu && accountMenu.classList.contains('is-open')) {
       accountMenu.classList.remove('is-open');
       accountButton.setAttribute('aria-expanded', 'false');
