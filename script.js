@@ -16,6 +16,25 @@
   const state = { bag: loadBag(), top: 68, bottom: 64 };
   const pdp = { color: 'Milk', size: 'M', height: 'Regular', qty: 1 };
 
+  /* ---------- focus trap utility ---------- */
+  function trapFocus(root) {
+    const focusable = root.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    function handler(e) {
+      if (e.key !== 'Tab') return;
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+    root.addEventListener('keydown', handler);
+    return () => root.removeEventListener('keydown', handler);
+  }
+
   /* ---------- mobile nav ---------- */
   const menuToggle = $('[data-menu-toggle]');
   const mainNav = $('[data-main-nav]');
@@ -104,6 +123,11 @@
     addToBag(button.dataset.buyNow || button.dataset.add, button.dataset.price, `${pdp.color} · ${pdp.size} · ${pdp.height}`, pdp.qty);
   }));
 
+  /* ---------- checkout (stub) ---------- */
+  $$('[data-checkout]').forEach((button) => button.addEventListener('click', () => {
+    alert('Checkout is not wired to a payment provider. In production, this would redirect to Stripe/Shopify/etc.');
+  }));
+
   /* ---------- set builder ---------- */
   function setPrice() {
     return Math.floor((state.top + state.bottom) * 0.9);
@@ -122,8 +146,12 @@
 
   $$('[data-choice-group]').forEach((group) => {
     $$('.choice', group).forEach((choice) => choice.addEventListener('click', () => {
-      $$('.choice', group).forEach((item) => item.classList.remove('is-selected'));
+      $$('.choice', group).forEach((item) => {
+        item.classList.remove('is-selected');
+        item.setAttribute('aria-pressed', 'false');
+      });
       choice.classList.add('is-selected');
+      choice.setAttribute('aria-pressed', 'true');
       const name = choice.dataset.name;
       const price = Number(choice.dataset.price);
       if (group.dataset.choiceGroup === 'top') {
@@ -144,8 +172,14 @@
   function selectColor(color, el) {
     if (el) {
       const group = el.closest('.swatches, .color-swatches');
-      if (group) $$('.swatch', group).forEach((item) => item.classList.remove('is-selected'));
-      el.classList.add('is-selected');
+      if (group) {
+        $$('.swatch', group).forEach((item) => {
+          item.classList.remove('is-selected');
+          item.setAttribute('aria-pressed', 'false');
+        });
+        el.classList.add('is-selected');
+        el.setAttribute('aria-pressed', 'true');
+      }
     }
     const label = $('[data-color-label]');
     if (label) label.textContent = color;
@@ -195,9 +229,9 @@
 
   /* ---------- editorial rules carousel ---------- */
   const rules = [
-    ['Rule 01', '“Never sacrifice the outfit for the occasion.”'],
-    ['Rule 02', '“Good sleep deserves good design.”'],
-    ['Rule 03', '“Looking put together counts at home too.”'],
+    ['Rule 01', 'Never sacrifice the outfit for the occasion.'],
+    ['Rule 02', 'Good sleep deserves good design.'],
+    ['Rule 03', 'Looking put together counts at home too.'],
   ];
   let ruleIndex = 0;
   const nextRule = $('[data-next-rule]');
@@ -229,7 +263,7 @@
       if (message) message.textContent = 'Please enter a valid email address.';
       return;
     }
-    if (message) message.textContent = 'You’re on the list. See you in the morning.';
+    if (message) message.textContent = 'Youre on the list. See you in the morning.';
     newsletter.reset();
   });
 
@@ -243,11 +277,13 @@
     searchOverlay.setAttribute('aria-hidden', 'false');
     const input = $('input', searchOverlay);
     if (input) input.focus();
+    searchOverlay._focusTrap = trapFocus(searchOverlay);
   }
   function closeSearch() {
     if (!searchOverlay) return;
     searchOverlay.classList.remove('is-open');
     searchOverlay.setAttribute('aria-hidden', 'true');
+    if (searchOverlay._focusTrap) searchOverlay._focusTrap();
   }
   if (searchToggle) searchToggle.addEventListener('click', openSearch);
   if (searchClose) searchClose.addEventListener('click', closeSearch);
@@ -270,12 +306,6 @@
   const waitlistSuccess = $('[data-waitlist-success]');
   const waitlistSubmit = waitlistForm && $('.waitlist-submit, .cs-join', waitlistForm);
 
-  /* Where signups are sent.
-     - Set data-endpoint="https://…" on the form to POST
-       { email, name, source, page, at } as JSON to a real collector — e.g. a
-       Formspree endpoint, a Mailchimp/ConvertKit proxy, or your own API.
-     - Leave it empty to run in local demo mode: nothing leaves the browser, the
-       address is remembered locally so the UI behaves realistically. */
   const WAITLIST_KEY = 'tse-waitlist';
   const waitlistEndpoint = (waitlistForm && waitlistForm.dataset.endpoint) || '';
 
@@ -296,7 +326,6 @@
     if (echo) echo.textContent = email || '';
   }
 
-  /* returning visitor: skip the form they already filled in */
   const saved = readWaitlistStore();
   if (saved && saved.email) showWaitlistSuccess(saved.email);
 
@@ -326,7 +355,7 @@
       if (waitlistSubmit) {
         waitlistSubmit.dataset.label = waitlistSubmit.dataset.label || waitlistSubmit.textContent;
         waitlistSubmit.disabled = true;
-        waitlistSubmit.textContent = 'Joining…';
+        waitlistSubmit.textContent = 'Joining...';
       }
       try {
         if (waitlistEndpoint) {
@@ -337,7 +366,6 @@
           });
           if (!response.ok) throw new Error('Request failed: ' + response.status);
         } else {
-          /* local demo mode: simulate a brief round-trip */
           await new Promise((resolve) => setTimeout(resolve, 500));
         }
         writeWaitlistStore({ email: value, at: payload.at });
@@ -365,6 +393,22 @@
       const dropdown = $('.account-dropdown', accountMenu);
       if (dropdown) dropdown.setAttribute('aria-hidden', 'true');
     }
+  });
+
+  /* ---------- Initialize ARIA on choice buttons ---------- */
+  $$('[data-choice-group] .choice').forEach((c) => {
+    c.setAttribute('role', 'button');
+    c.setAttribute('tabindex', '0');
+    c.setAttribute('aria-pressed', c.classList.contains('is-selected') ? 'true' : 'false');
+    c.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); c.click(); } });
+  });
+
+  /* ---------- Initialize ARIA on swatches ---------- */
+  $$('.swatch, .color-swatches .swatch').forEach((s) => {
+    s.setAttribute('role', 'button');
+    s.setAttribute('tabindex', '0');
+    s.setAttribute('aria-pressed', s.classList.contains('is-selected') ? 'true' : 'false');
+    s.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); s.click(); } });
   });
 
   renderBag();
