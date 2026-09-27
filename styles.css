@@ -752,6 +752,11 @@ button{color:inherit;cursor:pointer;border:none;background:none}
 }
 
 /* Full-bleed backdrop */
+/* main is the only flow child that may grow, so the hero fills the viewport
+   instead of stopping at its content height. display:flex + default stretch
+   is what makes .cs-hero's own flex:1 meaningful. */
+.cs-page>main{flex:1;display:flex}
+
 .cs-hero{
   --hero-focus:center;
   position:relative;flex:1;display:flex;align-items:center;justify-content:center;
