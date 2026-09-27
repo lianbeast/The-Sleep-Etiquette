@@ -37,7 +37,7 @@ want first access when we open.
 ## The Look
 
 <p align="center">
-  <img src="docs/preview.png" alt="The Sleep Etiquette homepage" width="900">
+  <img src="docs/coming-soon-preview.png" alt="The Sleep Etiquette coming soon page" width="900">
 </p>
 
 ---
