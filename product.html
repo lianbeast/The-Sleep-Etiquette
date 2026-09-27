@@ -8,6 +8,8 @@
     <title>Short sleeve shirt — The Sleep Etiquette</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="image" href="assets/milk-model.png" fetchpriority="high" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -17,7 +19,7 @@
       <button class="mobile-menu-toggle" aria-label="Open menu" aria-expanded="false" data-menu-toggle><span></span><span></span><span></span></button>
       <a class="wordmark" href="index.html" aria-label="The Sleep Etiquette home">THE SLEEP<br /><em>ETIQUETTE</em></a>
       <nav class="main-nav" aria-label="Primary navigation" data-main-nav>
-        <a href="index.html#shop">Shop</a>
+        <a href="index.html#shop" aria-current="page">Shop</a>
         <a href="index.html#sets">Build Your Set</a>
         <a href="standards.html">Fabric Standards</a>
         <a href="journal.html">Journal</a>
@@ -123,8 +125,8 @@
       <section class="bestsellers" aria-labelledby="recent-title">
         <div class="section-heading"><div><p class="eyebrow">Recently viewed</p><h2 id="recent-title">Keep looking<br /><em>around.</em></h2></div></div>
         <div class="product-rail">
-          <article class="product-card"><div class="product-image product-image-blue-hour" role="img" aria-label="Long pant in Blue Hour"><button class="quick-add" data-add="Long pant" data-price="64">Quick add <span>↗</span></button></div><div class="product-info"><h3>Long pant</h3><p>Signature modal · Blue Hour</p><strong class="price">$64</strong></div></article>
-          <article class="product-card"><div class="product-image product-image-dusty-rose" role="img" aria-label="Pajama short in Dusty Rose"><button class="quick-add" data-add="Pajama short" data-price="58">Quick add <span>↗</span></button></div><div class="product-info"><h3>Pajama short</h3><p>Signature modal · Dusty Rose</p><strong class="price">$58</strong></div></article>
+          <article class="product-card"><div class="product-image product-image-blue-hour"><span class="sr-only">Long pant in Blue Hour</span><button class="quick-add" data-add="Long pant" data-price="64">Quick add <span>↗</span></button></div><div class="product-info"><h3>Long pant</h3><p>Signature modal · Blue Hour</p><strong class="price">$64</strong></div></article>
+          <article class="product-card"><div class="product-image product-image-dusty-rose"><span class="sr-only">Pajama short in Dusty Rose</span><button class="quick-add" data-add="Pajama short" data-price="58">Quick add <span>↗</span></button></div><div class="product-info"><h3>Pajama short</h3><p>Signature modal · Dusty Rose</p><strong class="price">$58</strong></div></article>
         </div>
       </section>
 

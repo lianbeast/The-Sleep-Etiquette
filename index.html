@@ -8,6 +8,8 @@
     <title>The Sleep Etiquette — Sleep Well. Dress Better.</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="image" href="assets/milk-model.png" fetchpriority="high" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -27,7 +29,7 @@
       </button>
       <a class="wordmark" href="index.html" aria-label="The Sleep Etiquette home">THE SLEEP<br /><em>ETIQUETTE</em></a>
       <nav class="main-nav" aria-label="Primary navigation" data-main-nav>
-        <a href="index.html#shop">Shop</a>
+        <a href="index.html#shop" aria-current="page">Shop</a>
         <a href="index.html#sets">Build Your Set</a>
         <a href="standards.html">Fabric Standards</a>
         <a href="journal.html">Journal</a>
@@ -81,7 +83,7 @@
         </div>
         <div class="product-rail">
           <article class="product-card">
-            <div class="product-image product-image-matcha" role="img" aria-label="Short sleeve shirt in Matcha"><span class="product-badge">Best seller</span><button class="quick-add" data-add="Short sleeve shirt" data-price="68">Quick add <span aria-hidden="true">↗</span></button></div>
+            <div class="product-image product-image-matcha"><span class="sr-only">Short sleeve shirt in Matcha</span><span class="product-badge">Best seller</span><button class="quick-add" data-add="Short sleeve shirt" data-price="68">Quick add <span aria-hidden="true">↗</span></button></div>
             <div class="product-info">
               <div class="rating" aria-label="Rated 4.8 out of 5">★★★★★ <span class="rating-count">4.8 (128)</span></div>
               <h3>Short sleeve shirt</h3>
@@ -90,7 +92,7 @@
             </div>
           </article>
           <article class="product-card">
-            <div class="product-image product-image-butter" role="img" aria-label="Long sleeve shirt in Butter"><button class="quick-add" data-add="Long sleeve shirt" data-price="76">Quick add <span aria-hidden="true">↗</span></button></div>
+            <div class="product-image product-image-butter"><span class="sr-only">Long sleeve shirt in Butter</span><button class="quick-add" data-add="Long sleeve shirt" data-price="76">Quick add <span aria-hidden="true">↗</span></button></div>
             <div class="product-info">
               <div class="rating" aria-label="Rated 4.9 out of 5">★★★★★ <span class="rating-count">4.9 (96)</span></div>
               <h3>Long sleeve shirt</h3>
@@ -99,7 +101,7 @@
             </div>
           </article>
           <article class="product-card">
-            <div class="product-image product-image-milk" role="img" aria-label="Ribbed tank in Milk"><button class="quick-add" data-add="Ribbed tank" data-price="54">Quick add <span aria-hidden="true">↗</span></button></div>
+            <div class="product-image product-image-milk"><span class="sr-only">Ribbed tank in Milk</span><button class="quick-add" data-add="Ribbed tank" data-price="54">Quick add <span aria-hidden="true">↗</span></button></div>
             <div class="product-info">
               <div class="rating" aria-label="Rated 4.7 out of 5">★★★★★ <span class="rating-count">4.7 (84)</span></div>
               <h3>Ribbed tank</h3>
@@ -108,7 +110,7 @@
             </div>
           </article>
           <article class="product-card">
-            <div class="product-image product-image-dusty-rose" role="img" aria-label="Pajama short in Dusty Rose"><button class="quick-add" data-add="Pajama short" data-price="58">Quick add <span aria-hidden="true">↗</span></button></div>
+            <div class="product-image product-image-dusty-rose"><span class="sr-only">Pajama short in Dusty Rose</span><button class="quick-add" data-add="Pajama short" data-price="58">Quick add <span aria-hidden="true">↗</span></button></div>
             <div class="product-info">
               <div class="rating" aria-label="Rated 4.8 out of 5">★★★★★ <span class="rating-count">4.8 (71)</span></div>
               <h3>Pajama short</h3>
@@ -117,7 +119,7 @@
             </div>
           </article>
           <article class="product-card">
-            <div class="product-image product-image-blue-hour" role="img" aria-label="Long pant in Blue Hour"><button class="quick-add" data-add="Long pant" data-price="64">Quick add <span aria-hidden="true">↗</span></button></div>
+            <div class="product-image product-image-blue-hour"><span class="sr-only">Long pant in Blue Hour</span><button class="quick-add" data-add="Long pant" data-price="64">Quick add <span aria-hidden="true">↗</span></button></div>
             <div class="product-info">
               <div class="rating" aria-label="Rated 4.9 out of 5">★★★★★ <span class="rating-count">4.9 (112)</span></div>
               <h3>Long pant</h3>
@@ -126,7 +128,7 @@
             </div>
           </article>
           <article class="product-card">
-            <div class="product-image product-image-cocoa" role="img" aria-label="The boxer in Cocoa"><button class="quick-add" data-add="The boxer" data-price="48">Quick add <span aria-hidden="true">↗</span></button></div>
+            <div class="product-image product-image-cocoa"><span class="sr-only">The boxer in Cocoa</span><button class="quick-add" data-add="The boxer" data-price="48">Quick add <span aria-hidden="true">↗</span></button></div>
             <div class="product-info">
               <div class="rating" aria-label="Rated 4.8 out of 5">★★★★★ <span class="rating-count">4.8 (63)</span></div>
               <h3>The boxer</h3>
@@ -246,10 +248,10 @@
           <a class="arrow-link" href="journal.html">Visit the journal <span aria-hidden="true">↗</span></a>
         </div>
         <div class="journal-filters" data-filters>
-          <button class="filter is-active" data-filter="all">All</button>
-          <button class="filter" data-filter="rituals">Sleep rituals</button>
-          <button class="filter" data-filter="fabric">Fabric education</button>
-          <button class="filter" data-filter="travel">Travel</button>
+          <button class="filter is-active" aria-pressed="true" data-filter="all">All</button>
+          <button class="filter" aria-pressed="false" data-filter="rituals">Sleep rituals</button>
+          <button class="filter" aria-pressed="false" data-filter="fabric">Fabric education</button>
+          <button class="filter" aria-pressed="false" data-filter="travel">Travel</button>
         </div>
         <div class="journal-grid">
           <article class="journal-card" data-category="rituals">

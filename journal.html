@@ -8,6 +8,8 @@
     <title>The Journal — The Sleep Etiquette</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="image" href="assets/blue-hour-model.png" fetchpriority="high" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -20,7 +22,7 @@
         <a href="index.html#shop">Shop</a>
         <a href="index.html#sets">Build Your Set</a>
         <a href="standards.html">Fabric Standards</a>
-        <a href="journal.html">Journal</a>
+        <a href="journal.html" aria-current="page">Journal</a>
         <a href="about.html">About</a>
       </nav>
       <div class="header-actions">
@@ -50,12 +52,12 @@
           </div>
         </div>
         <div class="journal-filters" data-filters>
-          <button class="filter is-active" data-filter="all">All</button>
-          <button class="filter" data-filter="hotel">Hotel mornings</button>
-          <button class="filter" data-filter="rituals">Sleep rituals</button>
-          <button class="filter" data-filter="fabric">Fabric education</button>
-          <button class="filter" data-filter="founder">Founder notes</button>
-          <button class="filter" data-filter="travel">Travel</button>
+          <button class="filter is-active" aria-pressed="true" data-filter="all">All</button>
+          <button class="filter" aria-pressed="false" data-filter="hotel">Hotel mornings</button>
+          <button class="filter" aria-pressed="false" data-filter="rituals">Sleep rituals</button>
+          <button class="filter" aria-pressed="false" data-filter="fabric">Fabric education</button>
+          <button class="filter" aria-pressed="false" data-filter="founder">Founder notes</button>
+          <button class="filter" aria-pressed="false" data-filter="travel">Travel</button>
         </div>
         <div class="journal-grid">
           <article class="journal-card" data-category="hotel">

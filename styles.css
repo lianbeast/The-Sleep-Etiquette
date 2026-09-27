@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap');
 
 :root {
   /* Color system */
@@ -14,13 +13,13 @@
   --paper:       #FFFFFF;
   --ink:         #222222;
   --muted:       #68625D;
-  --line:        #D9D2CA;
+  --line:        #D9D2CA;  /* decorative rules only — 1.5:1, too low for control edges */
+  --control-edge:#868079;  /* 3.9:1 on paper, 3.5:1 on milk — the boundary a control needs */
 
   /* Semantic text colors (contrast-checked against section backgrounds) */
   --text-on-rose:    #4a3a3e;  /* replaces var(--text-on-rose)/var(--text-on-rose)/var(--text-on-rose) — was 4.2:1 FAIL on rose */
   --text-on-matcha:  #364133;  /* replaces var(--text-on-matcha) — was 4.9:1 OK on matcha */
-  --meta-light:      #7a7268;  /* replaces var(--meta-light) — was 2.4:1 FAIL on milk */
-  --meta-dark:       #4a433c;  /* replaces var(--meta-dark) — was 4.5:1 tight on dark */
+  --meta-light:      #9A9188;  /* muted text on the dark announcement bar — 5.1:1 on #222222 */
 
   /* Typography */
   --serif: 'Cormorant Garamond', Georgia, serif;
@@ -75,8 +74,22 @@ button{color:inherit;cursor:pointer;border:none;background:none}
   font-size:13px;border-radius:var(--radius);
 }
 .skip-link:focus{top:10px}
+
+/* Visible focus for every interactive element. The `:focus-visible` selector
+   keeps the ring off mouse clicks but guarantees it for keyboard users, which
+   is what the per-component `outline:0` resets below used to remove. */
+:focus-visible{
+  outline:2px solid var(--after-dark);
+  outline-offset:3px;
+}
+/* On dark surfaces the ink ring is invisible; invert it. */
+.announcement :focus-visible,
+.search-overlay :focus-visible,
+.quick-add :focus-visible{
+  outline-color:var(--butter);
+}
 @media (prefers-reduced-motion:reduce){
-  *,*{transition:none!important;animation:none!important}
+  *{transition:none!important;animation:none!important}
 }
 
 /* Announcement bar */
@@ -110,6 +123,9 @@ button{color:inherit;cursor:pointer;border:none;background:none}
   background:var(--after-dark);transition:.25s var(--ease);
 }
 .main-nav a:hover:after{width:100%}
+/* aria-current is a semantic marker, not a visual one — without this the
+   active page is announced but looks identical to the rest of the nav. */
+.main-nav a[aria-current="page"]:after{width:100%}
 .header-actions{display:flex;justify-content:flex-end;align-items:center;gap:22px}
 .text-button,.icon-button{
   background:none;border:0;padding:8px;text-transform:uppercase;
@@ -296,13 +312,22 @@ button{color:inherit;cursor:pointer;border:none;background:none}
   display:flex;align-items:center;gap:10px;margin-top:8px;
 }
 .swatches{display:flex;gap:10px}
+/* Swatch border is a control boundary, so it must clear 3:1 against the
+   surface it sits on. The swatch fill stays the true brand shade — the
+   neutral ring provides the boundary the pale shades cannot make
+   themselves (butter on paper was 1.4:1). */
 .swatch{
   width:32px;height:32px;border-radius:50%;border:2px solid transparent;
   cursor:pointer;transition:.25s var(--ease);
+  box-shadow:inset 0 0 0 1px var(--control-edge);
 }
-.swatch:hover{border-color:var(--after-dark);transform:scale(1.08)}
-.swatch.is-selected{transform:scale(1.08);border-width:3px}
-.swatch-milk{background:var(--milk);border-color:#D9D2CA}
+.swatch.is-selected{
+  transform:scale(1.08);
+  border-color:var(--after-dark);
+  box-shadow:inset 0 0 0 2px var(--paper);
+}
+.swatch:hover{transform:scale(1.08)}
+.swatch-milk{background:var(--milk)}
 .swatch-butter{background:var(--butter)}
 .swatch-matcha{background:var(--matcha)}
 .swatch-rose{background:var(--rose)}
@@ -444,7 +469,7 @@ button{color:inherit;cursor:pointer;border:none;background:none}
   display:flex;width:100%;border-bottom:1px solid var(--after-dark);
 }
 .form-row input{
-  border:0;background:none;padding:14px 0;outline:0;flex:1;
+  border:0;background:none;padding:14px 0;flex:1;
   font-size:15px;color:var(--after-dark);
 }
 .form-row input::placeholder{color:rgba(50,50,50,.72)}
@@ -510,8 +535,10 @@ button{color:inherit;cursor:pointer;border:none;background:none}
   letter-spacing:.06em;margin-bottom:10px;
 }
 .option-pills{display:flex;flex-wrap:wrap;gap:10px}
+/* `--control-edge` is the 3:1 boundary colour; `--line` at 1.5:1 is
+   decoration only and cannot be the outline of an interactive control. */
 .option-pills button{
-  padding:10px 20px;border:1px solid var(--line);border-radius:var(--radius);
+  padding:10px 20px;border:1px solid var(--control-edge);border-radius:var(--radius);
   font-size:14px;font-weight:500;cursor:pointer;transition:.25s var(--ease);
   background:var(--paper);
 }
@@ -520,12 +547,12 @@ button{color:inherit;cursor:pointer;border:none;background:none}
   background:var(--after-dark);color:var(--paper);
 }
 .color-swatches{display:flex;gap:12px;align-items:center}
-.color-swatches .swatch{width:44px;height:44px;border-radius:8px;border:1px solid var(--line)}
+.color-swatches .swatch{width:44px;height:44px;border-radius:8px}
 .color-swatches .swatch.is-selected{transform:scale(1.08);border-width:3px}
 .qty-controls{
   display:flex;align-items:center;gap:14px;margin-top:28px;
 }
-.qty-btn{width:44px;height:44px;border-radius:50%;background:var(--paper);border:1px solid var(--line);font-size:18px;font-weight:600;cursor:pointer}
+.qty-btn{width:44px;height:44px;border-radius:50%;background:var(--paper);border:1px solid var(--control-edge);font-size:18px;font-weight:600;cursor:pointer}
 .qty-value{font-size:18px;font-weight:600;min-width:32px;text-align:center}
 .detail-actions{
   display:flex;gap:16px;margin-top:32px;
@@ -584,7 +611,6 @@ button{color:inherit;cursor:pointer;border:none;background:none}
 .search-overlay input{
   width:100%;max-width:720px;margin:0 auto;padding:16px 20px;
   font-size:22px;background:transparent;border:0;color:var(--paper);
-  outline:0;
 }
 .search-overlay input::placeholder{color:rgba(255,255,255,.75)}
 .search-close{
@@ -812,9 +838,15 @@ button{color:inherit;cursor:pointer;border:none;background:none}
   transition:border-color .25s var(--ease),background .25s var(--ease);
 }
 .cs-form input::placeholder{color:var(--muted)}
-.cs-form input:focus{outline:none;border-color:var(--ink);background:rgba(255,255,255,.86)}
+.cs-form input:focus{border-color:var(--ink);background:rgba(255,255,255,.86)}
 .cs-form input:focus-visible{outline:2px solid var(--join);outline-offset:2px}
+/* Sync the visual error state with :user-invalid so it appears only after the
+   user interacts — not on page load, and not before they've typed. */
+.cs-form input:user-invalid{border-color:#B00020;background:rgba(176,0,32,.05)}
+.cs-form input:user-invalid:focus-visible{outline-color:#B00020}
+/* JS-driven state (programmatic submit on a novalidate form). */
 .cs-form input.invalid{border-color:#B00020}
+.cs-form input.invalid:focus-visible{outline-color:#B00020}
 .cs-join{
   flex:none;border:1px solid var(--join);border-radius:var(--radius);
   background:var(--join);color:var(--milk);

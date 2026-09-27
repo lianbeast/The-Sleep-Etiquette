@@ -4,6 +4,10 @@
 .opencode/
 .playwright-mcp/
 .workbuddy-ai/
+.claude/
+.claude.json
+.mcp.json
+CLAUDE.md
 
 # --- OS cruft ---
 .DS_Store
@@ -25,3 +29,5 @@ npm-debug.log*
 # --- Build output ---
 dist/
 build/
+# Added by code-review-graph
+.code-review-graph/

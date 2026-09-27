@@ -18,11 +18,15 @@
 
   /* ---------- focus trap utility ---------- */
   function trapFocus(root) {
-    const focusable = root.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-    const first = focusable[0];
-    const last = focusable[focusable.length - 1];
+    const sel = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
     function handler(e) {
       if (e.key !== 'Tab') return;
+      // Re-query each Tab: the bag re-renders on add/remove, so the set of
+      // tabbable nodes changes while the drawer stays open.
+      const focusable = [...root.querySelectorAll(sel)].filter((el) => el.offsetParent !== null);
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
       if (e.shiftKey && document.activeElement === first) {
         e.preventDefault();
         last.focus();
@@ -52,6 +56,7 @@
   /* ---------- cart / bag ---------- */
   const cartDrawer = $('[data-cart-drawer]');
   const backdrop = $('.drawer-backdrop');
+  let cartOpener = null;
   const bagCount = $('[data-bag-count]');
   const drawerCount = $('[data-drawer-count]');
   const subtotal = $('[data-subtotal]');
@@ -82,16 +87,25 @@
   }
 
   function openCart() {
-    if (!cartDrawer) return;
+    if (!cartDrawer || cartDrawer.classList.contains('is-open')) return;
+    // Remember who opened the drawer so focus can return there on close.
+    // document.activeElement covers the bag button and every quick-add alike.
+    cartOpener = document.activeElement;
     cartDrawer.classList.add('is-open');
     if (backdrop) backdrop.classList.add('is-open');
     cartDrawer.setAttribute('aria-hidden', 'false');
+    // Move focus in before trapping, or the first Tab still lands on the page behind.
+    const first = $('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])', cartDrawer);
+    if (first) first.focus();
+    cartDrawer._focusTrap = trapFocus(cartDrawer);
   }
   function closeCart() {
-    if (!cartDrawer) return;
+    if (!cartDrawer || !cartDrawer.classList.contains('is-open')) return;
     cartDrawer.classList.remove('is-open');
     if (backdrop) backdrop.classList.remove('is-open');
     cartDrawer.setAttribute('aria-hidden', 'true');
+    if (cartDrawer._focusTrap) { cartDrawer._focusTrap(); cartDrawer._focusTrap = null; }
+    if (cartOpener) { cartOpener.focus(); cartOpener = null; }
   }
 
   const cartButton = $('[data-cart]');
@@ -245,8 +259,12 @@
 
   /* ---------- journal filters ---------- */
   $$('[data-filter]').forEach((filter) => filter.addEventListener('click', () => {
-    $$('[data-filter]').forEach((item) => item.classList.remove('is-active'));
+    $$('[data-filter]').forEach((item) => {
+      item.classList.remove('is-active');
+      item.setAttribute('aria-pressed', 'false');
+    });
     filter.classList.add('is-active');
+    filter.setAttribute('aria-pressed', 'true');
     const selected = filter.dataset.filter;
     $$('.journal-card').forEach((card) => {
       card.classList.toggle('hidden', selected !== 'all' && card.dataset.category !== selected);
@@ -258,11 +276,14 @@
   if (newsletter) newsletter.addEventListener('submit', (event) => {
     event.preventDefault();
     const message = $('[data-form-message]');
+    const input = $('#email', newsletter);
     const email = new FormData(newsletter).get('email');
     if (!email || !String(email).includes('@')) {
+      if (input) input.setAttribute('aria-invalid', 'true');
       if (message) message.textContent = 'Please enter a valid email address.';
       return;
     }
+    if (input) input.removeAttribute('aria-invalid');
     if (message) message.textContent = 'Youre on the list. See you in the morning.';
     newsletter.reset();
   });
@@ -337,11 +358,18 @@
       const value = String(new FormData(waitlistForm).get('email') || '').trim();
       const valid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value);
       if (!valid) {
-        if (emailInput) { emailInput.classList.add('invalid'); emailInput.focus(); }
+        if (emailInput) {
+          emailInput.classList.add('invalid');
+          emailInput.setAttribute('aria-invalid', 'true');
+          emailInput.focus();
+        }
         if (waitlistMessage) waitlistMessage.textContent = 'Please enter a valid email address.';
         return;
       }
-      if (emailInput) emailInput.classList.remove('invalid');
+      if (emailInput) {
+        emailInput.classList.remove('invalid');
+        emailInput.removeAttribute('aria-invalid');
+      }
       if (waitlistMessage) waitlistMessage.textContent = '';
 
       const payload = {
@@ -395,20 +423,15 @@
     }
   });
 
-  /* ---------- Initialize ARIA on choice buttons ---------- */
-  $$('[data-choice-group] .choice').forEach((c) => {
-    c.setAttribute('role', 'button');
-    c.setAttribute('tabindex', '0');
-    c.setAttribute('aria-pressed', c.classList.contains('is-selected') ? 'true' : 'false');
-    c.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); c.click(); } });
-  });
-
-  /* ---------- Initialize ARIA on swatches ---------- */
-  $$('.swatch, .color-swatches .swatch').forEach((s) => {
-    s.setAttribute('role', 'button');
-    s.setAttribute('tabindex', '0');
-    s.setAttribute('aria-pressed', s.classList.contains('is-selected') ? 'true' : 'false');
-    s.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); s.click(); } });
+  /* ---------- Initialise ARIA on choice buttons and swatches ----------
+     These are real <button> elements: they already have the button role, are
+     already in the tab order, and already fire on Enter (keydown) and Space
+     (keyup). Re-adding role/tabindex/key handlers duplicated that behaviour
+     and made Space activate on keydown, double-firing with the native one.
+     Only the initial aria-pressed mirror of the server-rendered .is-selected
+     is needed — the click handlers keep it in sync. */
+  $$('[data-choice-group] .choice, .swatch, .color-swatches .swatch').forEach((el) => {
+    el.setAttribute('aria-pressed', el.classList.contains('is-selected') ? 'true' : 'false');
   });
 
   renderBag();
