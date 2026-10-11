@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" data-composition-id="scene-collection" data-composition-duration="6.82">
+<head><meta charset="UTF-8"><title>Scene — Six shades</title></head>
+<body>
+  <template>
+    <div data-hf-id="hf-17xa" id="scene-collection-root" data-composition-id="scene-collection" data-duration="6.82" data-width="1920" data-height="1080" data-fps="30">
+      <style>
+        #scene-collection-root { position: absolute; inset: 0; width: 1920px; height: 1080px; overflow: hidden; color: var(--dark); }
+      </style>
+      <section data-hf-id="hf-qb0e" id="scene-collection" class="clip" data-start="0" data-duration="6.82" data-track-index="1" data-label="Six shades">
+        <div data-hf-id="hf-s77l" id="collection-surface" class="scene-surface collection-layout">
+          <div data-hf-id="hf-ih4e" class="collection-top"><div data-hf-id="hf-q22l" class="wordmark">The Sleep Etiquette</div><div data-hf-id="hf-tdx4" class="color-line" aria-hidden="true" data-layout-ignore=""><i data-hf-id="hf-y36v" style="background:var(--matcha)"></i><i data-hf-id="hf-mwud" style="background:var(--butter)"></i><i data-hf-id="hf-0qb4" style="background:var(--milk)"></i><i data-hf-id="hf-c0fg" style="background:var(--cocoa)"></i><i data-hf-id="hf-91sy" style="background:var(--sky)"></i><i data-hf-id="hf-nrir" style="background:var(--petal)"></i></div></div>
+          <h2 data-hf-id="hf-cfmv" id="collection-headline">Six shades. One point of view.</h2>
+          <div data-hf-id="hf-bfem" class="portrait-grid">
+            <figure data-hf-id="hf-hqnr" id="portrait-matcha" class="portrait" style="--shade:var(--matcha)"><div data-hf-id="hf-udj5" class="photo-window"><img data-hf-id="hf-wwdu" src="assets/images/matcha-model-v2.webp" alt="Matcha sleepwear colorway"></div><figcaption data-hf-id="hf-7c45"><span data-hf-id="hf-icjl">Matcha</span><i data-hf-id="hf-tjf6" class="shade-dot" aria-hidden="true"></i></figcaption></figure>
+            <figure data-hf-id="hf-n0jz" id="portrait-butter" class="portrait" style="--shade:var(--butter)"><div data-hf-id="hf-22vp" class="photo-window"><img data-hf-id="hf-klyq" src="assets/images/butter-model-v2.webp" alt="Butter sleepwear colorway"></div><figcaption data-hf-id="hf-8rih"><span data-hf-id="hf-r9qz">Butter</span><i data-hf-id="hf-7ljq" class="shade-dot" aria-hidden="true"></i></figcaption></figure>
+            <figure data-hf-id="hf-bfgp" id="portrait-milk" class="portrait" style="--shade:var(--milk)"><div data-hf-id="hf-39ss" class="photo-window"><img data-hf-id="hf-0hb6" src="assets/images/milk-model-v2.webp" alt="Milk sleepwear colorway"></div><figcaption data-hf-id="hf-9yfk"><span data-hf-id="hf-vnum">Milk</span><i data-hf-id="hf-7zur" class="shade-dot" aria-hidden="true"></i></figcaption></figure>
+            <figure data-hf-id="hf-dzu3" id="portrait-cocoa" class="portrait" style="--shade:var(--cocoa)"><div data-hf-id="hf-2vhr" class="photo-window"><img data-hf-id="hf-xwak" src="assets/images/cocoa-model-v2.webp" alt="Cocoa sleepwear colorway"></div><figcaption data-hf-id="hf-9k4j"><span data-hf-id="hf-1w58">Cocoa</span><i data-hf-id="hf-8e5s" class="shade-dot" aria-hidden="true"></i></figcaption></figure>
+            <figure data-hf-id="hf-a5kr" id="portrait-sky" class="portrait" style="--shade:var(--sky)"><div data-hf-id="hf-42eu" class="photo-window"><img data-hf-id="hf-bgbo" src="assets/images/blue-hour-model-v2.webp" alt="Sky sleepwear colorway"></div><figcaption data-hf-id="hf-7kle"><span data-hf-id="hf-evlm">Sky</span><i data-hf-id="hf-5m0l" class="shade-dot" aria-hidden="true"></i></figcaption></figure>
+            <figure data-hf-id="hf-tgtj" id="portrait-petal" class="portrait" style="--shade:var(--petal)"><div data-hf-id="hf-3o3t" class="photo-window"><img data-hf-id="hf-r4fz" src="assets/images/dusty-rose-model-v2.webp" alt="Petal sleepwear colorway"></div><figcaption data-hf-id="hf-76ad"><span data-hf-id="hf-xbrz">Petal</span><i data-hf-id="hf-60bm" class="shade-dot" aria-hidden="true"></i></figcaption></figure>
+          </div><div data-hf-id="hf-yigd" class="collection-rule" aria-hidden="true" data-layout-ignore=""><div data-hf-id="hf-d4rp" id="collection-warmth"></div></div>
+        </div>
+      </section>
+      <script>
+        (() => {
+          const root = document.getElementById('scene-collection-root');
+          const $ = (selector) => root.querySelector(selector);
+          const tl = gsap.timeline({ paused: true });
+          tl.addLabel('six-shades', 0);
+          tl.fromTo($('#collection-surface'), { opacity: 0 }, { opacity: 1, duration: .42, ease: 'sine.inOut' }, 0);
+          tl.fromTo($('#collection-headline'), { x: -18, opacity: 0 }, { x: 0, opacity: 1, duration: .68, ease: 'power2.out' }, .09);
+          const portraits = ['matcha', 'butter', 'milk', 'cocoa', 'sky', 'petal'];
+          const arrivals = [.95, 1.61, 2.17, 2.70, 3.25, 3.80];
+          portraits.forEach((shade, index) => {
+            tl.fromTo($('#portrait-' + shade), { opacity: 0, y: 28, scale: .975 }, { opacity: 1, y: 0, scale: 1, duration: .52, ease: 'power2.out' }, arrivals[index]);
+            tl.fromTo($('#portrait-' + shade + ' img'), { scale: 1.024 }, { scale: 1, duration: 6.54 - arrivals[index], ease: 'none' }, arrivals[index]);
+          });
+          tl.fromTo($('#collection-surface'), { opacity: 1, x: 0 }, { opacity: 0, x: -18, duration: .58, ease: 'sine.inOut', immediateRender: false }, 6.24);
+          const warmth = $('#collection-warmth');
+          const audioData = window.AUDIO_DATA;
+          const audioOffsetFrames = Math.floor(4.39 * audioData.fps);
+          function drawAudio(frame) { warmth.style.opacity = String(.12 + frame.rms * .04); }
+          const localFrames = Math.min(Math.ceil(6.82 * audioData.fps), audioData.totalFrames - audioOffsetFrames);
+          for (let frame = 0; frame < localFrames; frame++) tl.call(() => drawAudio(audioData.frames[audioOffsetFrames + frame]), [], frame / audioData.fps);
+          tl.eventCallback('onUpdate', () => drawAudio(audioData.frames[Math.min(audioData.totalFrames - 1, Math.floor(4.39 * audioData.fps + tl.time() * audioData.fps))]));
+          drawAudio(audioData.frames[audioOffsetFrames]);
+          window.__timelines = window.__timelines || {};
+          window.__timelines['scene-collection'] = tl;
+        })();
+      </script>
+    </div>
+  </template>
+</body>
+</html>

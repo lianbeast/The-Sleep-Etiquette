@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" data-composition-id="scene-proof" data-composition-duration="4.36">
+<head><meta charset="UTF-8"><title>Scene — Cut like clothing</title></head>
+<body>
+  <template>
+    <div data-hf-id="hf-vfql" id="scene-proof-root" data-composition-id="scene-proof" data-duration="4.36" data-width="1920" data-height="1080" data-fps="30">
+      <style>
+        #scene-proof-root { position: absolute; inset: 0; width: 1920px; height: 1080px; overflow: hidden; color: var(--dark); }
+      </style>
+      <section data-hf-id="hf-zpto" id="scene-proof" class="clip" data-start="0" data-duration="4.36" data-track-index="3" data-label="Cut like clothing">
+        <div data-hf-id="hf-kl5o" id="proof-surface" class="scene-surface proof-surface"><div data-hf-id="hf-irqh" class="proof-layout">
+          <div data-hf-id="hf-5ozc" class="proof-copy"><div data-hf-id="hf-qp8r" id="proof-wordmark" class="wordmark">The Sleep Etiquette</div><div data-hf-id="hf-try0" class="proof-message"><div data-hf-id="hf-apg9" id="proof-rule" class="rule" aria-hidden="true" data-layout-ignore=""></div><h2 data-hf-id="hf-85ef" id="proof-headline"><span data-hf-id="hf-1su6">Made for sleep.</span><span data-hf-id="hf-fw8h" class="second-line">Cut like clothing.</span></h2><p data-hf-id="hf-slme" id="proof-fit">XS-4X. Petite, Regular, Tall.</p></div></div>
+          <div data-hf-id="hf-w1nb" class="proof-image photo-window"><div data-hf-id="hf-db8n" id="proof-camera"><img data-hf-id="hf-fwn9" src="assets/images/milk-product-v2.webp" alt="Milk sleepwear collar, piping and drawstring detail"></div></div>
+        </div></div>
+      </section>
+      <script>
+        (() => {
+          const root = document.getElementById('scene-proof-root');
+          const $ = (selector) => root.querySelector(selector);
+          const tl = gsap.timeline({ paused: true });
+          tl.addLabel('cut-like-clothing', 0);
+          tl.fromTo($('#proof-surface'), { opacity: 0 }, { opacity: 1, duration: .46, ease: 'sine.inOut' }, 0);
+          tl.fromTo($('#proof-headline'), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: .64, ease: 'power3.out' }, .13);
+          tl.fromTo($('#proof-rule'), { scaleX: 0 }, { scaleX: 1, duration: .65, ease: 'power2.inOut' }, .22);
+          tl.fromTo($('#proof-fit'), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .48, ease: 'sine.out' }, .70);
+          tl.fromTo($('#proof-wordmark'), { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: .5, ease: 'power2.out' }, 1.63);
+          tl.fromTo($('#proof-camera'), { scale: 1.025, y: 0 }, { scale: 1.055, y: -8, duration: 4.36, ease: 'none' }, 0);
+          window.__timelines = window.__timelines || {};
+          window.__timelines['scene-proof'] = tl;
+        })();
+      </script>
+    </div>
+  </template>
+</body>
+</html>

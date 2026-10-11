@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" data-resolution="landscape">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920, height=1080">
+  <title>The Sleep Etiquette</title>
+  <script src="assets/vendor/gsap.min.js"></script>
+  <script src="assets/music/audio-data.js"></script>
+  <style>
+    @font-face { font-family: 'Cormorant Garamond'; src: url('assets/fonts/cormorant-garamond-400.ttf') format('truetype'); font-weight: 400; }
+    @font-face { font-family: 'Cormorant Garamond'; src: url('assets/fonts/cormorant-garamond-italic-400.ttf') format('truetype'); font-style: italic; font-weight: 400; }
+    @font-face { font-family: 'Instrument Sans'; src: url('assets/fonts/instrument-sans-400.ttf') format('truetype'); font-weight: 400; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --milk: #F7F3EF; --dark: #222222; --matcha: #B8C2A8; --butter: #E8D89A; --cocoa: #6B5747; --sky: #7D8FA1; --petal: #D7BFC0; }
+    html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--milk); }
+    #root { position: relative; width: 100%; height: 100%; overflow: hidden; color: var(--dark); font-family: 'Instrument Sans', sans-serif; }
+    .clip, .scene-surface { position: absolute; inset: 0; width: 100%; height: 100%; overflow: hidden; }
+    .scene-surface { background: var(--milk); }
+    #collection-surface, #builder-surface, #proof-surface { opacity: 0; }
+    h1, h2, .wordmark { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
+    .wordmark { font-size: 43px; line-height: 1.15; letter-spacing: -.025em; }
+    .kicker { font-size: 26px; line-height: 1.4; letter-spacing: .1em; }
+    .rule { height: 2px; width: 100%; background: var(--dark); transform-origin: left center; }
+    .photo-window { position: relative; overflow: hidden; }
+    .photo-window img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .hero-layout { display: grid; grid-template-columns: 820px 1100px; height: 100%; }
+    .hero-copy { position: relative; z-index: 1; display: flex; flex-direction: column; padding: 82px 72px 76px 90px; background: var(--milk); }
+    .hero-copy .wordmark { margin-bottom: 178px; }
+    #hero-kicker { margin-bottom: 35px; }
+    #hero-headline { font-size: 147px; line-height: .94; letter-spacing: -.045em; width: 650px; }
+    #hero-headline span, #proof-headline span { display: block; }
+    .second-line { font-style: italic; }
+    .hero-footer { margin-top: auto; padding-top: 42px; }
+    .hero-footer .rule { width: 124px; height: 3px; background: var(--matcha); }
+    .hero-image, #hero-camera { height: 100%; }
+    #hero-camera { width: 100%; transform-origin: 60% 52%; }
+    #hero-camera img { object-position: 69% center; }
+    #hero-light { position: absolute; right: 0; top: 0; width: 6px; height: 100%; background: var(--butter); }
+    .collection-layout { height: 100%; padding: 64px 84px 62px; display: flex; flex-direction: column; }
+    .collection-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px; }
+    .collection-top .wordmark { font-size: 38px; }
+    .color-line { display: flex; width: 246px; height: 8px; }
+    .color-line i { flex: 1; }
+    #collection-headline { font-size: 104px; line-height: 1.08; letter-spacing: -.035em; margin-bottom: 56px; }
+    .portrait-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 18px; width: 100%; }
+    .portrait { width: 100%; }
+    .portrait .photo-window { height: 540px; background: var(--milk); }
+    .portrait img { object-position: center 44%; }
+    .portrait figcaption { margin-top: 25px; display: flex; align-items: center; justify-content: space-between; font-size: 28px; line-height: 1.3; }
+    .shade-dot { width: 18px; height: 18px; border-radius: 50%; background: var(--shade); border: 1px solid var(--dark); flex: 0 0 auto; }
+    .collection-rule { margin-top: auto; position: relative; height: 5px; background: var(--matcha); }
+    #collection-warmth { position: absolute; inset: 0; background: var(--butter); }
+    .builder-layout { height: 100%; padding: 62px 84px 68px; display: grid; grid-template-columns: 820px 1fr; gap: 100px; }
+    .builder-imagery { display: flex; flex-direction: column; gap: 38px; }
+    .builder-imagery .wordmark { font-size: 38px; }
+    .builder-images { display: grid; grid-template-columns: 280px 508px; gap: 32px; align-items: center; flex: 1; }
+    .builder-portrait { height: 552px; }
+    .builder-product { height: 660px; background: var(--milk); }
+    .builder-product img { object-fit: contain; }
+    .builder-panel { display: flex; flex-direction: column; justify-content: center; padding-bottom: 30px; }
+    #builder-headline { font-size: 113px; line-height: 1.02; letter-spacing: -.035em; margin-bottom: 42px; }
+    .choice-row { border-top: 1px solid var(--cocoa); padding: 23px 0 25px; }
+    .choice-label { font-size: 23px; line-height: 1.4; margin-bottom: 12px; }
+    .choice-value { display: flex; align-items: center; justify-content: space-between; font-size: 34px; line-height: 1.3; }
+    .selection-mark { display: block; width: 26px; height: 26px; border-radius: 50%; background: var(--matcha); position: relative; }
+    .selection-mark::after { content: ''; position: absolute; width: 11px; height: 6px; border-left: 2px solid var(--dark); border-bottom: 2px solid var(--dark); left: 8px; top: 8px; transform: rotate(-45deg); }
+    .shade-row { display: flex; align-items: center; justify-content: space-between; }
+    .swatches { display: flex; gap: 18px; padding: 7px 0; }
+    .swatch { display: block; width: 34px; height: 34px; border-radius: 50%; background: var(--shade); border: 1px solid var(--cocoa); position: relative; }
+    #milk-selection { position: absolute; inset: -7px; border: 2px solid var(--dark); border-radius: 50%; }
+    #set-summary { padding-top: 26px; border-top: 2px solid var(--dark); margin-top: 18px; }
+    #set-name { font-family: 'Cormorant Garamond', serif; font-size: 49px; line-height: 1.1; max-width: 748px; }
+    #set-pricing { font-size: 27px; line-height: 1.4; margin-top: 13px; }
+    .proof-surface { background: var(--dark); color: var(--milk); }
+    .proof-layout { display: grid; grid-template-columns: 1050px 710px; gap: 0; height: 100%; padding: 74px 80px 76px; }
+    .proof-copy { display: flex; flex-direction: column; padding: 20px 72px 28px 16px; }
+    #proof-wordmark { font-size: 43px; }
+    .proof-message { margin-top: auto; margin-bottom: auto; padding-top: 58px; }
+    #proof-rule { width: 112px; height: 3px; background: var(--butter); margin-bottom: 43px; }
+    #proof-headline { font-size: 133px; line-height: .98; letter-spacing: -.04em; width: 930px; }
+    #proof-fit { font-size: 30px; line-height: 1.4; margin-top: 41px; }
+    .proof-image { height: 850px; align-self: center; background: var(--milk); }
+    #proof-camera { width: 100%; height: 100%; }
+    #proof-camera img { object-position: center 32%; }
+    audio { display: none; }
+  </style>
+</head>
+<body>
+  <div data-hf-id="hf-91h8" id="root" data-composition-id="main" data-start="0" data-duration="20.2" data-width="1920" data-height="1080" data-fps="30">
+    <div data-hf-id="hf-uopo" id="scene-hero" class="clip" data-composition-id="scene-hero" data-composition-src="compositions/scene-hero.html" data-start="0" data-duration="4.67" data-track-index="0" data-width="1920" data-height="1080" data-label="Considered sleepwear"></div>
+    <div data-hf-id="hf-qb0e" id="scene-collection" class="clip" data-composition-id="scene-collection" data-composition-src="compositions/scene-collection.html" data-start="4.39" data-duration="6.82" data-track-index="1" data-width="1920" data-height="1080" data-label="Six shades"></div>
+    <div data-hf-id="hf-cppp" id="scene-builder" class="clip" data-composition-id="scene-builder" data-composition-src="compositions/scene-builder.html" data-start="10.93" data-duration="5.19" data-track-index="2" data-width="1920" data-height="1080" data-label="Build your set"></div>
+    <div data-hf-id="hf-zpto" id="scene-proof" class="clip" data-composition-id="scene-proof" data-composition-src="compositions/scene-proof.html" data-start="15.84" data-duration="4.36" data-track-index="3" data-width="1920" data-height="1080" data-label="Cut like clothing"></div>
+    <audio data-hf-id="hf-gn1e" id="music-bed" src="assets/music/happy-beats-business-moves-vol-12-by-ende-dot-app.mp3" data-start="0" data-duration="20.2" data-track-index="4" data-volume="0.24" data-audio-group="music" data-label="Warm music bed" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:0},{&quot;t&quot;:0.6,&quot;v&quot;:0.24},{&quot;t&quot;:19,&quot;v&quot;:0.24},{&quot;t&quot;:20.2,&quot;v&quot;:0}]}]}"></audio>
+    <audio data-hf-id="hf-tmk5" id="sfx-collection" src="assets/sfx/impact/impactSoft_medium_001.ogg" data-start="8.19" data-duration="0.183288" data-track-index="5" data-volume="0.12" data-audio-group="sfx" data-label="Collection reveal"></audio>
+    <audio data-hf-id="hf-egf4" id="sfx-selection" src="assets/sfx/interface/click_003.ogg" data-start="12.13" data-duration="0.010023" data-track-index="5" data-volume="0.15" data-audio-group="sfx" data-label="Milk selection"></audio>
+    <audio data-hf-id="hf-agdt" id="sfx-lockup" src="assets/sfx/interface/bong_001.ogg" data-start="17.47" data-duration="0.122834" data-track-index="5" data-volume="0.1" data-audio-group="sfx" data-label="Brand lockup"></audio>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    window.__timelines = window.__timelines || {};
+    window.__timelines['main'] = tl;
+  </script>
+</body>
+</html>

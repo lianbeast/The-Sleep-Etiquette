@@ -1,0 +1,29 @@
+{
+  "duration": 20.2,
+  "assertions": [
+    { "kind": "appearsBy", "selector": "#hero-headline", "bySec": 1 },
+    { "kind": "appearsBy", "selector": "#collection-headline", "bySec": 5.2 },
+    { "kind": "before", "a": "#portrait-matcha", "b": "#portrait-butter" },
+    { "kind": "before", "a": "#portrait-butter", "b": "#portrait-milk" },
+    { "kind": "before", "a": "#portrait-milk", "b": "#portrait-cocoa" },
+    { "kind": "before", "a": "#portrait-cocoa", "b": "#portrait-sky" },
+    { "kind": "before", "a": "#portrait-sky", "b": "#portrait-petal" },
+    { "kind": "appearsBy", "selector": "#portrait-petal", "bySec": 8.8 },
+    { "kind": "before", "a": "#top-selection", "b": "#bottom-selection" },
+    { "kind": "before", "a": "#bottom-selection", "b": "#milk-selection" },
+    { "kind": "before", "a": "#milk-selection", "b": "#set-summary" },
+    { "kind": "appearsBy", "selector": "#set-summary", "bySec": 13.11 },
+    { "kind": "appearsBy", "selector": "#proof-headline", "bySec": 16.7 },
+    { "kind": "appearsBy", "selector": "#proof-fit", "bySec": 17.2 },
+    { "kind": "appearsBy", "selector": "#proof-wordmark", "bySec": 18.1 },
+    { "kind": "staysInFrame", "selector": "#hero-headline" },
+    { "kind": "staysInFrame", "selector": "#portrait-matcha" },
+    { "kind": "staysInFrame", "selector": "#portrait-butter" },
+    { "kind": "staysInFrame", "selector": "#portrait-milk" },
+    { "kind": "staysInFrame", "selector": "#portrait-cocoa" },
+    { "kind": "staysInFrame", "selector": "#portrait-sky" },
+    { "kind": "staysInFrame", "selector": "#portrait-petal" },
+    { "kind": "staysInFrame", "selector": "#set-summary" },
+    { "kind": "staysInFrame", "selector": "#proof-headline" }
+  ]
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" data-composition-id="scene-hero" data-composition-duration="4.67">
+<head><meta charset="UTF-8"><title>Scene — Considered sleepwear</title></head>
+<body>
+  <template>
+    <div data-hf-id="hf-6bxv" id="scene-hero-root" data-composition-id="scene-hero" data-duration="4.67" data-width="1920" data-height="1080" data-fps="30">
+      <style>
+        #scene-hero-root { position: absolute; inset: 0; width: 1920px; height: 1080px; overflow: hidden; color: var(--dark); }
+      </style>
+      <section data-hf-id="hf-uopo" id="scene-hero" class="clip" data-start="0" data-duration="4.67" data-track-index="0" data-label="Considered sleepwear">
+        <div data-hf-id="hf-8b6h" id="hero-surface" class="scene-surface hero-layout">
+          <div data-hf-id="hf-jloi" class="hero-copy"><div data-hf-id="hf-i4hj" id="hero-wordmark" class="wordmark">The Sleep Etiquette</div><p data-hf-id="hf-hrva" id="hero-kicker" class="kicker">Sleepwear, considered</p><h1 data-hf-id="hf-1a8o" id="hero-headline"><span data-hf-id="hf-w97i">Sleep well.</span><span data-hf-id="hf-0p23" class="second-line">Dress better.</span></h1><div data-hf-id="hf-r0ng" class="hero-footer"><div data-hf-id="hf-7pj3" id="hero-rule" class="rule" aria-hidden="true" data-layout-ignore=""></div></div><div data-hf-id="hf-jnao" id="hero-light" aria-hidden="true" data-layout-ignore=""></div></div>
+          <div data-hf-id="hf-dllh" class="hero-image photo-window"><div data-hf-id="hf-cve3" id="hero-camera"><img data-hf-id="hf-2n49" src="assets/images/coming-soon-hero.jpg" alt="Warm bedroom with soft linen bedding and flowers"></div></div>
+        </div>
+      </section>
+      <script>
+        (() => {
+          const root = document.getElementById('scene-hero-root');
+          const $ = (selector) => root.querySelector(selector);
+          const tl = gsap.timeline({ paused: true });
+          tl.addLabel('considered-sleepwear', 0);
+          tl.fromTo($('#hero-wordmark'), { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: .55, ease: 'power2.out' }, 0);
+          tl.fromTo($('#hero-kicker'), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: .5, ease: 'sine.out' }, .08);
+          tl.fromTo($('#hero-headline'), { opacity: 0, y: 23 }, { opacity: 1, y: 0, duration: .75, ease: 'power3.out' }, .14);
+          tl.fromTo($('#hero-rule'), { scaleX: 0 }, { scaleX: 1, duration: .8, ease: 'power2.inOut' }, .4);
+          tl.fromTo($('#hero-camera'), { scale: 1, x: 0 }, { scale: 1.045, x: -9, duration: 4.39, ease: 'none' }, 0);
+          tl.fromTo($('#hero-surface'), { opacity: 1 }, { opacity: 0, duration: .56, ease: 'sine.inOut', immediateRender: false }, 4.11);
+          const light = $('#hero-light');
+          const audioData = window.AUDIO_DATA;
+          function drawAudio(frame) {
+            const bass = (frame.bands[0] + frame.bands[1] + frame.bands[2]) / 3;
+            light.style.opacity = String(.26 + bass * .05);
+          }
+          for (let frame = 0; frame < Math.min(audioData.totalFrames, Math.ceil(4.67 * audioData.fps)); frame++) tl.call(() => drawAudio(audioData.frames[frame]), [], frame / audioData.fps);
+          tl.eventCallback('onUpdate', () => drawAudio(audioData.frames[Math.min(audioData.totalFrames - 1, Math.floor(tl.time() * audioData.fps))]));
+          drawAudio(audioData.frames[0]);
+          window.__timelines = window.__timelines || {};
+          window.__timelines['scene-hero'] = tl;
+        })();
+      </script>
+    </div>
+  </template>
+</body>
+</html>
