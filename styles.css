@@ -341,7 +341,7 @@ button{color:inherit;cursor:pointer;border:none;background:none}
 }
 .builder-preview p{
   font-size:13px;color:var(--muted);
-  letter-spacing:.06em;margin:0 0 10px;
+  letter-spacing:.03em;margin:0 0 10px;
 }
 .builder-preview .set-name{
   font-family:var(--serif);font-size:20px;font-weight:400;line-height:1.2;
@@ -506,7 +506,7 @@ button{color:inherit;cursor:pointer;border:none;background:none}
   grid-column:1/-1;border-top:1px solid #4B4A45;
   padding-top:28px;margin-top:40px;display:flex;
   justify-content:space-between;font-size:11px;
-  letter-spacing:.06em;color:var(--milk);
+  letter-spacing:.04em;color:var(--milk);
 }
 
 /* PDP */
