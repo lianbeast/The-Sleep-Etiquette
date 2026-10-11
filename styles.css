@@ -94,7 +94,7 @@ button{color:inherit;cursor:pointer;border:none;background:none}
 
 /* Announcement bar */
 .announcement{
-  height:38px;background:var(--after-dark);color:var(--milk);
+  min-height:38px;padding:8px 12px;background:var(--after-dark);color:var(--milk);
   display:flex;justify-content:center;align-items:center;gap:10px;
   font-size:12px;font-weight:500;letter-spacing:.04em;
 }
@@ -903,7 +903,7 @@ button{color:inherit;cursor:pointer;border:none;background:none}
 .home-main .newsletter .home-kicker{color:#4f4a38}
 
 @media(max-width:800px){
-  .announcement{height:34px;padding:0 12px;gap:8px;font-size:12px;white-space:nowrap}
+  .announcement{min-height:34px;padding:8px 12px;gap:8px;font-size:12px;white-space:nowrap}
   .announcement a,.announcement-separator{display:none}
   .site-header{height:72px;padding-inline:20px}
   .main-nav{top:72px}
