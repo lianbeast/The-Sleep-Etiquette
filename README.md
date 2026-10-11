@@ -54,7 +54,7 @@ The whole site is built from ten colours and two typefaces. Nothing else.
 white lifts a section off it, near-black carries all the type, a softer grey carries the
 secondary type, and one pale line is the only divider we ever use.
 
-**Five fabric colours** — butter, matcha, dusty rose, cocoa and blue hour — are the exact
+**Six fabric colours** — Matcha, Butter, Milk, Cocoa, Sky and Petal — are the exact
 colourways the collection sells in. They show up as product swatches *and* as full-bleed
 section backgrounds, so the site never invents a colour the clothes don't have.
 

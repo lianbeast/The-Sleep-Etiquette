@@ -284,7 +284,7 @@
       return;
     }
     if (input) input.removeAttribute('aria-invalid');
-    if (message) message.textContent = 'Youre on the list. See you in the morning.';
+    if (message) message.textContent = "You're on the list. See you in the morning.";
     newsletter.reset();
   });
 
