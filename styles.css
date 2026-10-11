@@ -156,18 +156,18 @@ button{color:inherit;cursor:pointer;border:none;background:none}
   grid-template-columns:.56fr .44fr;overflow:hidden;
 }
 .hero-image{
-  background-image:linear-gradient(180deg,rgba(34,34,34,.05),rgba(34,34,34,.12)),url('assets/milk-model.png');
+  background-image:linear-gradient(180deg,rgba(34,34,34,.05),rgba(34,34,34,.12)),url('assets/milk-model-v2.webp');
   background-size:cover;background-position:center 22%;min-height:calc(100dvh - 120px);
 }
 /* One considered portrait per page — the brand-deck contact sheet is never used as art */
 .about-hero .hero-image{
-  background-image:linear-gradient(180deg,rgba(34,34,34,.05),rgba(34,34,34,.12)),url('assets/cocoa-model.png');
+  background-image:linear-gradient(180deg,rgba(34,34,34,.05),rgba(34,34,34,.12)),url('assets/cocoa-model-v2.webp');
 }
 .standards-hero .hero-image{
-  background-image:linear-gradient(180deg,rgba(34,34,34,.04),rgba(34,34,34,.10)),url('assets/butter-model.png');
+  background-image:linear-gradient(180deg,rgba(34,34,34,.04),rgba(34,34,34,.10)),url('assets/butter-model-v2.webp');
 }
 .journal-hero .hero-image{
-  background-image:linear-gradient(180deg,rgba(34,34,34,.05),rgba(34,34,34,.12)),url('assets/blue-hour-model.png');
+  background-image:linear-gradient(180deg,rgba(34,34,34,.05),rgba(34,34,34,.12)),url('assets/blue-hour-model-v2.webp');
 }
 .hero-copy{padding:7vw 0 7vw 5vw;max-width:580px}
 .hero .eyebrow{
@@ -245,19 +245,19 @@ button{color:inherit;cursor:pointer;border:none;background:none}
 }
 
 /* Product card images — one crop per color story */
-.product-image-matcha{background-image:url('assets/matcha-model.png'),url('assets/matcha-product.png');background-size:cover,0}
-.product-image-butter{background-image:url('assets/butter-model.png'),url('assets/butter-product.png');background-size:cover,0}
-.product-image-milk{background-image:url('assets/milk-model.png'),url('assets/milk-product.png');background-size:cover,0}
-.product-image-dusty-rose{background-image:url('assets/dusty-rose-model.png'),url('assets/dusty-rose-product.png');background-size:cover,0}
-.product-image-blue-hour{background-image:url('assets/blue-hour-model.png'),url('assets/blue-hour-product.png');background-size:cover,0}
-.product-image-cocoa{background-image:url('assets/cocoa-model.png'),url('assets/cocoa-product.png');background-size:cover,0}
+.product-image-matcha{background-image:url('assets/matcha-model-v2.webp'),url('assets/matcha-product-v2.webp');background-size:cover,0}
+.product-image-butter{background-image:url('assets/butter-model-v2.webp'),url('assets/butter-product-v2.webp');background-size:cover,0}
+.product-image-milk{background-image:url('assets/milk-model-v2.webp'),url('assets/milk-product-v2.webp');background-size:cover,0}
+.product-image-dusty-rose{background-image:url('assets/dusty-rose-model-v2.webp'),url('assets/dusty-rose-product-v2.webp');background-size:cover,0}
+.product-image-blue-hour{background-image:url('assets/blue-hour-model-v2.webp'),url('assets/blue-hour-product-v2.webp');background-size:cover,0}
+.product-image-cocoa{background-image:url('assets/cocoa-model-v2.webp'),url('assets/cocoa-product-v2.webp');background-size:cover,0}
 .product-card:hover .product-image{background-image:none}
-.product-card:hover .product-image-matcha{background-image:url('assets/matcha-product.png')}
-.product-card:hover .product-image-butter{background-image:url('assets/butter-product.png')}
-.product-card:hover .product-image-milk{background-image:url('assets/milk-product.png')}
-.product-card:hover .product-image-dusty-rose{background-image:url('assets/dusty-rose-product.png')}
-.product-card:hover .product-image-blue-hour{background-image:url('assets/blue-hour-product.png')}
-.product-card:hover .product-image-cocoa{background-image:url('assets/cocoa-product.png')}
+.product-card:hover .product-image-matcha{background-image:url('assets/matcha-product-v2.webp')}
+.product-card:hover .product-image-butter{background-image:url('assets/butter-product-v2.webp')}
+.product-card:hover .product-image-milk{background-image:url('assets/milk-product-v2.webp')}
+.product-card:hover .product-image-dusty-rose{background-image:url('assets/dusty-rose-product-v2.webp')}
+.product-card:hover .product-image-blue-hour{background-image:url('assets/blue-hour-product-v2.webp')}
+.product-card:hover .product-image-cocoa{background-image:url('assets/cocoa-product-v2.webp')}
 
 /* Reviews */
 .reviews{padding:clamp(70px,12vw,130px) var(--site-gutter);background:var(--milk)}
@@ -432,12 +432,12 @@ button{color:inherit;cursor:pointer;border:none;background:none}
   border-radius:var(--radius);
 }
 /* Editorial frames for journal + review cards — six distinct photographs */
-.journal-one{background-image:url('assets/matcha-model.png');background-position:center 18%}
-.journal-two{background-image:url('assets/butter-model.png');background-position:center 20%}
-.journal-three{background-image:url('assets/blue-hour-model.png');background-position:center 18%}
-.journal-four{background-image:url('assets/cocoa-model.png');background-position:center 20%}
-.journal-five{background-image:url('assets/dusty-rose-model.png');background-position:center 18%}
-.journal-six{background-image:url('assets/milk-model.png');background-position:center 20%}
+.journal-one{background-image:url('assets/matcha-model-v2.webp');background-position:center 18%}
+.journal-two{background-image:url('assets/butter-model-v2.webp');background-position:center 20%}
+.journal-three{background-image:url('assets/blue-hour-model-v2.webp');background-position:center 18%}
+.journal-four{background-image:url('assets/cocoa-model-v2.webp');background-position:center 20%}
+.journal-five{background-image:url('assets/dusty-rose-model-v2.webp');background-position:center 18%}
+.journal-six{background-image:url('assets/milk-model-v2.webp');background-position:center 20%}
 .journal-card .eyebrow{margin:18px 0 10px}
 .journal-card h3{
   font-family:var(--serif);font-weight:400;font-size:26px;
@@ -828,23 +828,22 @@ button{color:inherit;cursor:pointer;border:none;background:none}
 .color-wardrobe-heading>p{
   max-width:470px;margin:0;color:var(--muted);font-size:16px;line-height:1.75;
 }
-.color-lookbook{
-  width:100%;overflow-x:auto;border-block:1px solid var(--line);background:var(--milk);
-  scrollbar-width:thin;
-}
-.color-lookbook img{display:block;width:100%;height:auto;min-width:940px}
 .palette-index{
-  display:grid;grid-template-columns:repeat(6,1fr);margin:0;padding:24px 0 74px;
-  list-style:none;border-bottom:1px solid var(--line);
+  display:grid;grid-template-columns:repeat(6,minmax(154px,1fr));margin:0;padding:0 0 74px;
+  overflow-x:auto;list-style:none;border-block:1px solid var(--line);scrollbar-width:thin;
 }
 .palette-index li{
-  display:grid;grid-template-columns:26px 1fr;grid-template-rows:auto auto;
-  column-gap:10px;align-items:center;padding:0 14px;border-right:1px solid var(--line);
+  min-width:0;border-right:1px solid var(--line);
 }
-.palette-index li:first-child{padding-left:0}
-.palette-index li:last-child{padding-right:0;border-right:0}
+.palette-index li:last-child{border-right:0}
+.palette-index img{display:block;width:100%;height:auto;aspect-ratio:200/394;object-fit:cover}
+.palette-label{
+  display:grid;grid-template-columns:26px 1fr;column-gap:10px;align-items:center;padding:20px 14px;
+  border-top:1px solid var(--line);background:var(--milk);
+}
+.palette-label>span:last-child{display:grid;gap:2px}
 .palette-dot{
-  grid-row:1/3;width:26px;height:26px;border-radius:50%;box-shadow:inset 0 0 0 1px var(--control-edge);
+  width:26px;height:26px;border-radius:50%;box-shadow:inset 0 0 0 1px var(--control-edge);
 }
 .palette-index strong{font-family:var(--serif);font-size:18px;font-weight:600;line-height:1}
 .palette-index small{color:var(--muted);font-size:11px;line-height:1.3}
@@ -873,7 +872,7 @@ button{color:inherit;cursor:pointer;border:none;background:none}
   border:1px solid rgba(54,65,51,.35);
 }
 .builder-lookbook{
-  min-height:420px;background:url("assets/milk-model.png") center 18%/cover no-repeat;
+  min-height:420px;background:url("assets/milk-model-v2.webp") center 18%/cover no-repeat;
 }
 .builder-summary{padding:26px 28px 30px}
 .builder-summary>p:first-child{margin:0;color:var(--muted);font-size:12px;letter-spacing:.04em}
@@ -922,10 +921,7 @@ button{color:inherit;cursor:pointer;border:none;background:none}
   .home-hero-edition{right:20px;bottom:20px;color:var(--ink);border-color:rgba(34,34,34,.45)}
   .color-wardrobe-heading,.home-proof{grid-template-columns:1fr;gap:32px}
   .color-wardrobe{padding-inline:20px}
-  .color-lookbook{margin-inline:0}
-  .color-lookbook img{width:940px;max-width:none}
-  .palette-index{grid-template-columns:repeat(3,1fr);row-gap:22px;padding-bottom:50px}
-  .palette-index li{border-right:0;padding:0}
+  .palette-index{grid-template-columns:repeat(6,154px);padding-bottom:50px}
   .home-products{grid-template-columns:1fr;gap:54px;margin-top:54px}
   .home-products .product-image{aspect-ratio:4/5;background-position:center 15%}
   .home-products .quick-add{opacity:1;transform:none}
@@ -942,7 +938,6 @@ button{color:inherit;cursor:pointer;border:none;background:none}
 }
 
 @media(max-width:480px){
-  .palette-index{grid-template-columns:repeat(2,1fr)}
   .color-wardrobe h2,.home-proof h2{font-size:48px}
   .home-set-builder .section-heading h2{font-size:46px}
   .home-set-builder .color-story{align-items:flex-start;flex-wrap:wrap}
