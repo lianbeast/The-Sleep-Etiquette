@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <title>The Sleep Etiquette — symbol</title>
+  <!-- warm cream ground, matches brand milk colour -->
+  <rect width="256" height="256" fill="#F7F3EF"/>
+  <!-- disc rim in cocoa -->
+  <circle cx="128" cy="128" r="104" fill="none" stroke="#6B5747" stroke-width="6"/>
+  <!-- shared spine (E + T stem) -->
+  <rect x="120" y="60" width="16" height="144" rx="3" fill="#222222"/>
+  <!-- top arm, full width (E top + T crossbar) -->
+  <rect x="52" y="60" width="172" height="16" rx="2" fill="#222222"/>
+  <!-- middle arm (E) -->
+  <rect x="120" y="110" width="68" height="16" rx="2" fill="#222222"/>
+  <!-- bottom arm (E) -->
+  <rect x="120" y="162" width="104" height="16" rx="2" fill="#222222"/>
+  <!-- slab serifs -->
+  <rect x="44" y="52" width="14" height="24" rx="2" fill="#222222"/>
+  <rect x="218" y="52" width="14" height="24" rx="2" fill="#222222"/>
+  <rect x="218" y="110" width="14" height="24" rx="2" fill="#222222"/>
+  <rect x="218" y="162" width="14" height="24" rx="2" fill="#222222"/>
+  <rect x="112" y="198" width="32" height="12" rx="2" fill="#222222"/>
+  <rect x="112" y="46" width="32" height="12" rx="2" fill="#222222"/>
+</svg>

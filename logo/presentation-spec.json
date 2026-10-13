@@ -1,0 +1,33 @@
+{
+  "brand": "The Sleep Etiquette",
+  "tagline": "Sleep well. Dress better.",
+  "brief": "A fashion-first sleepwear label for people who want what they wear to bed to be as considered as what they wear to dinner. Six colourways, XS–4X, wash-tested fabrics.",
+  "adjectives": ["restrained", "warm", "considered", "editorial"],
+  "criteria": "Success: distinct from sleepwear clichés, recognisable at 16px, works in one colour, feels premium without being loud.",
+  "industry": "fashion-apparel",
+  "concepts": [
+    {
+      "name": "Monogram",
+      "symbol": "final-symbol.svg",
+      "lockup": "final-horizontal.svg",
+      "idea": "A serif E/T ligature in a disc — the initial of the word that distinguishes this label.",
+      "rationale": [
+        "Ownable: no other sleepwear brand uses an E/T monogram",
+        "Legible at favicon size thanks to the disc frame",
+        "The E and T share a spine — two ideas in one mark"
+      ]
+    }
+  ],
+  "brand_color": "#6B5747",
+  "greyscale": false,
+  "designer": "Claude Code",
+  "round": 1,
+  "mockups": [
+    {"name": "Clothing label", "description": "Woven label on the inside neck of a garment"},
+    {"name": "Hang tag", "description": "Paper hang tag attached to the product with a cotton thread"},
+    {"name": "Shipping box", "description": "Tuck-end mailer box with the mark embossed on the lid"},
+    {"name": "Website header", "description": "The mark in the top-left of the site's header alongside navigation"},
+    {"name": "Social avatar", "description": "The symbol centred on a warm cream background for Instagram/TikTok"},
+    {"name": "Embroidery", "description": "The mark stitched onto a garment pocket in cocoa thread"}
+  ]
+}

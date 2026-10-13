@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <title>Concept C — The Fold</title>
+  <desc>A single folded plane — the gesture of cloth lifted and creased. References the product category (sleepwear, a folded garment) without drawing a garment; the crease is the mark's spine.</desc>
+  <rect width="256" height="256" fill="#FFFFFF"/>
+  <!-- left flap, lifted -->
+  <path d="M64 72 Q64 48 96 44 L196 44 Q224 48 224 72 L224 192 Q224 212 204 216 L60 216 Q36 212 36 192 L36 92 Q36 76 52 72 Z" fill="#222222"/>
+  <!-- the fold's shadowed underside (negative space reads as the crease line) -->
+  <path d="M128 44 Q158 60 158 92 L158 184 Q158 204 138 208 L128 208 Q112 208 100 200 L100 120 Q100 88 120 72 Z" fill="#FFFFFF"/>
+  <!-- a soft edge highlight along the crease -->
+  <path d="M128 60 Q144 74 144 96 L144 188" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+  <!-- hem shadow -->
+  <path d="M60 216 Q128 224 204 216 L204 204 Q128 212 60 204 Z" fill="#161616" opacity="0.5"/>
+</svg>

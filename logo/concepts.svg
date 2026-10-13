@@ -1,0 +1,197 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1600" height="840" viewBox="0 0 1600 840"><defs><filter id="grey"><feColorMatrix type="saturate" values="0"/></filter></defs><rect width="1600" height="840" fill="#f7f7f4"/><text x="60" y="78" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="40" font-weight="700" fill="#161616">Logo concepts</text><text x="60" y="116" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="20" fill="#6b6b6b">Concepts for review — pick a direction (or tell me what you like in each).</text><rect x="60" y="150" width="474.667" height="630" rx="18" fill="#fff" stroke="#161616" stroke-width="2"/><g filter="url(#grey)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" x="90" y="190" width="414.667" height="300" preserveAspectRatio="xMidYMid meet">
+  <title>Concept A — Monogram</title>
+  <desc>A serif E/T ligature in a disc. "Etiquette" is the word that distinguishes the label; the mark is its initial, with the top arm spanning to hint at the T of "The".</desc>
+  <rect width="256" height="256" fill="#FFFFFF"/>
+  <circle cx="128" cy="128" r="104" fill="none" stroke="#222222" stroke-width="6"/>
+  <!-- spine (shared by E and the T's stem) -->
+  <rect x="120" y="50" width="16" height="156" rx="3" fill="#222222"/>
+  <!-- top arm = E's top arm + T's crossbar, full width -->
+  <rect x="50" y="50" width="176" height="18" rx="2" fill="#222222"/>
+  <!-- middle arm -->
+  <rect x="120" y="110" width="70" height="18" rx="2" fill="#222222"/>
+  <!-- bottom arm -->
+  <rect x="120" y="170" width="106" height="18" rx="2" fill="#222222"/>
+  <!-- slab serifs at arm ends and spine foot -->
+  <rect x="42" y="46" width="16" height="26" rx="2" fill="#222222"/>
+  <rect x="218" y="46" width="16" height="26" rx="2" fill="#222222"/>
+  <rect x="218" y="106" width="16" height="26" rx="2" fill="#222222"/>
+  <rect x="218" y="166" width="16" height="26" rx="2" fill="#222222"/>
+  <rect x="112" y="198" width="32" height="14" rx="2" fill="#222222"/>
+  <rect x="112" y="40" width="32" height="14" rx="2" fill="#222222"/>
+</svg></g><g filter="url(#grey)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" x="90" y="516" width="64" height="64" preserveAspectRatio="xMidYMid meet">
+  <title>Concept A — Monogram</title>
+  <desc>A serif E/T ligature in a disc. "Etiquette" is the word that distinguishes the label; the mark is its initial, with the top arm spanning to hint at the T of "The".</desc>
+  <rect width="256" height="256" fill="#FFFFFF"/>
+  <circle cx="128" cy="128" r="104" fill="none" stroke="#222222" stroke-width="6"/>
+  <!-- spine (shared by E and the T's stem) -->
+  <rect x="120" y="50" width="16" height="156" rx="3" fill="#222222"/>
+  <!-- top arm = E's top arm + T's crossbar, full width -->
+  <rect x="50" y="50" width="176" height="18" rx="2" fill="#222222"/>
+  <!-- middle arm -->
+  <rect x="120" y="110" width="70" height="18" rx="2" fill="#222222"/>
+  <!-- bottom arm -->
+  <rect x="120" y="170" width="106" height="18" rx="2" fill="#222222"/>
+  <!-- slab serifs at arm ends and spine foot -->
+  <rect x="42" y="46" width="16" height="26" rx="2" fill="#222222"/>
+  <rect x="218" y="46" width="16" height="26" rx="2" fill="#222222"/>
+  <rect x="218" y="106" width="16" height="26" rx="2" fill="#222222"/>
+  <rect x="218" y="166" width="16" height="26" rx="2" fill="#222222"/>
+  <rect x="112" y="198" width="32" height="14" rx="2" fill="#222222"/>
+  <rect x="112" y="40" width="32" height="14" rx="2" fill="#222222"/>
+</svg></g><text x="122" y="600" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="12" fill="#8a8a8a" text-anchor="middle">64px</text><g filter="url(#grey)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" x="180" y="548" width="32" height="32" preserveAspectRatio="xMidYMid meet">
+  <title>Concept A — Monogram</title>
+  <desc>A serif E/T ligature in a disc. "Etiquette" is the word that distinguishes the label; the mark is its initial, with the top arm spanning to hint at the T of "The".</desc>
+  <rect width="256" height="256" fill="#FFFFFF"/>
+  <circle cx="128" cy="128" r="104" fill="none" stroke="#222222" stroke-width="6"/>
+  <!-- spine (shared by E and the T's stem) -->
+  <rect x="120" y="50" width="16" height="156" rx="3" fill="#222222"/>
+  <!-- top arm = E's top arm + T's crossbar, full width -->
+  <rect x="50" y="50" width="176" height="18" rx="2" fill="#222222"/>
+  <!-- middle arm -->
+  <rect x="120" y="110" width="70" height="18" rx="2" fill="#222222"/>
+  <!-- bottom arm -->
+  <rect x="120" y="170" width="106" height="18" rx="2" fill="#222222"/>
+  <!-- slab serifs at arm ends and spine foot -->
+  <rect x="42" y="46" width="16" height="26" rx="2" fill="#222222"/>
+  <rect x="218" y="46" width="16" height="26" rx="2" fill="#222222"/>
+  <rect x="218" y="106" width="16" height="26" rx="2" fill="#222222"/>
+  <rect x="218" y="166" width="16" height="26" rx="2" fill="#222222"/>
+  <rect x="112" y="198" width="32" height="14" rx="2" fill="#222222"/>
+  <rect x="112" y="40" width="32" height="14" rx="2" fill="#222222"/>
+</svg></g><text x="196" y="600" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="12" fill="#8a8a8a" text-anchor="middle">32px</text><g filter="url(#grey)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" x="238" y="564" width="16" height="16" preserveAspectRatio="xMidYMid meet">
+  <title>Concept A — Monogram</title>
+  <desc>A serif E/T ligature in a disc. "Etiquette" is the word that distinguishes the label; the mark is its initial, with the top arm spanning to hint at the T of "The".</desc>
+  <rect width="256" height="256" fill="#FFFFFF"/>
+  <circle cx="128" cy="128" r="104" fill="none" stroke="#222222" stroke-width="6"/>
+  <!-- spine (shared by E and the T's stem) -->
+  <rect x="120" y="50" width="16" height="156" rx="3" fill="#222222"/>
+  <!-- top arm = E's top arm + T's crossbar, full width -->
+  <rect x="50" y="50" width="176" height="18" rx="2" fill="#222222"/>
+  <!-- middle arm -->
+  <rect x="120" y="110" width="70" height="18" rx="2" fill="#222222"/>
+  <!-- bottom arm -->
+  <rect x="120" y="170" width="106" height="18" rx="2" fill="#222222"/>
+  <!-- slab serifs at arm ends and spine foot -->
+  <rect x="42" y="46" width="16" height="26" rx="2" fill="#222222"/>
+  <rect x="218" y="46" width="16" height="26" rx="2" fill="#222222"/>
+  <rect x="218" y="106" width="16" height="26" rx="2" fill="#222222"/>
+  <rect x="218" y="166" width="16" height="26" rx="2" fill="#222222"/>
+  <rect x="112" y="198" width="32" height="14" rx="2" fill="#222222"/>
+  <rect x="112" y="40" width="32" height="14" rx="2" fill="#222222"/>
+</svg></g><text x="246" y="600" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="12" fill="#8a8a8a" text-anchor="middle">16px</text><text x="90.0" y="636" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="26" font-weight="700" fill="#161616">A · A — Monogram</text><text x="90.0" y="664" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#161616" letter-spacing="1.5">RECOMMENDED</text><text x="90.0" y="698" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="19" fill="#555">A serif E/T ligature in a disc</text><rect x="562.667" y="150" width="474.667" height="630" rx="18" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><g filter="url(#grey)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" x="592.667" y="190" width="414.667" height="300" preserveAspectRatio="xMidYMid meet">
+  <title>Concept B — The Rule</title>
+  <desc>"Etiquette" is a code of rules. The mark is a single elegant horizontal rule — the brand's own divider line — with a serifed terminal and one break, punctuated by a dot at the near end like a sentence.</desc>
+  <rect width="256" height="256" fill="#FFFFFF"/>
+  <!-- thin frame -->
+  <rect x="30" y="30" width="196" height="196" rx="2" fill="none" stroke="#222222" stroke-width="2"/>
+  <!-- the rule, with a serif terminal at left -->
+  <rect x="64" y="122" width="12" height="14" rx="1" fill="#222222"/>
+  <rect x="76" y="125" width="120" height="8" rx="1" fill="#222222"/>
+  <!-- the break -->
+  <rect x="196" y="125" width="16" height="8" rx="1" fill="#222222"/>
+  <!-- the dot (sentence punctus) at the near end -->
+  <circle cx="60" cy="132" r="7" fill="#222222"/>
+  <!-- a second, shorter rule below — the "standard" repeated -->
+  <rect x="64" y="162" width="8" height="12" rx="1" fill="#222222"/>
+  <rect x="72" y="165" width="100" height="6" rx="1" fill="#222222"/>
+  <rect x="172" y="165" width="12" height="6" rx="1" fill="#222222"/>
+</svg></g><g filter="url(#grey)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" x="592.667" y="516" width="64" height="64" preserveAspectRatio="xMidYMid meet">
+  <title>Concept B — The Rule</title>
+  <desc>"Etiquette" is a code of rules. The mark is a single elegant horizontal rule — the brand's own divider line — with a serifed terminal and one break, punctuated by a dot at the near end like a sentence.</desc>
+  <rect width="256" height="256" fill="#FFFFFF"/>
+  <!-- thin frame -->
+  <rect x="30" y="30" width="196" height="196" rx="2" fill="none" stroke="#222222" stroke-width="2"/>
+  <!-- the rule, with a serif terminal at left -->
+  <rect x="64" y="122" width="12" height="14" rx="1" fill="#222222"/>
+  <rect x="76" y="125" width="120" height="8" rx="1" fill="#222222"/>
+  <!-- the break -->
+  <rect x="196" y="125" width="16" height="8" rx="1" fill="#222222"/>
+  <!-- the dot (sentence punctus) at the near end -->
+  <circle cx="60" cy="132" r="7" fill="#222222"/>
+  <!-- a second, shorter rule below — the "standard" repeated -->
+  <rect x="64" y="162" width="8" height="12" rx="1" fill="#222222"/>
+  <rect x="72" y="165" width="100" height="6" rx="1" fill="#222222"/>
+  <rect x="172" y="165" width="12" height="6" rx="1" fill="#222222"/>
+</svg></g><text x="624.667" y="600" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="12" fill="#8a8a8a" text-anchor="middle">64px</text><g filter="url(#grey)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" x="682.667" y="548" width="32" height="32" preserveAspectRatio="xMidYMid meet">
+  <title>Concept B — The Rule</title>
+  <desc>"Etiquette" is a code of rules. The mark is a single elegant horizontal rule — the brand's own divider line — with a serifed terminal and one break, punctuated by a dot at the near end like a sentence.</desc>
+  <rect width="256" height="256" fill="#FFFFFF"/>
+  <!-- thin frame -->
+  <rect x="30" y="30" width="196" height="196" rx="2" fill="none" stroke="#222222" stroke-width="2"/>
+  <!-- the rule, with a serif terminal at left -->
+  <rect x="64" y="122" width="12" height="14" rx="1" fill="#222222"/>
+  <rect x="76" y="125" width="120" height="8" rx="1" fill="#222222"/>
+  <!-- the break -->
+  <rect x="196" y="125" width="16" height="8" rx="1" fill="#222222"/>
+  <!-- the dot (sentence punctus) at the near end -->
+  <circle cx="60" cy="132" r="7" fill="#222222"/>
+  <!-- a second, shorter rule below — the "standard" repeated -->
+  <rect x="64" y="162" width="8" height="12" rx="1" fill="#222222"/>
+  <rect x="72" y="165" width="100" height="6" rx="1" fill="#222222"/>
+  <rect x="172" y="165" width="12" height="6" rx="1" fill="#222222"/>
+</svg></g><text x="698.667" y="600" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="12" fill="#8a8a8a" text-anchor="middle">32px</text><g filter="url(#grey)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" x="740.667" y="564" width="16" height="16" preserveAspectRatio="xMidYMid meet">
+  <title>Concept B — The Rule</title>
+  <desc>"Etiquette" is a code of rules. The mark is a single elegant horizontal rule — the brand's own divider line — with a serifed terminal and one break, punctuated by a dot at the near end like a sentence.</desc>
+  <rect width="256" height="256" fill="#FFFFFF"/>
+  <!-- thin frame -->
+  <rect x="30" y="30" width="196" height="196" rx="2" fill="none" stroke="#222222" stroke-width="2"/>
+  <!-- the rule, with a serif terminal at left -->
+  <rect x="64" y="122" width="12" height="14" rx="1" fill="#222222"/>
+  <rect x="76" y="125" width="120" height="8" rx="1" fill="#222222"/>
+  <!-- the break -->
+  <rect x="196" y="125" width="16" height="8" rx="1" fill="#222222"/>
+  <!-- the dot (sentence punctus) at the near end -->
+  <circle cx="60" cy="132" r="7" fill="#222222"/>
+  <!-- a second, shorter rule below — the "standard" repeated -->
+  <rect x="64" y="162" width="8" height="12" rx="1" fill="#222222"/>
+  <rect x="72" y="165" width="100" height="6" rx="1" fill="#222222"/>
+  <rect x="172" y="165" width="12" height="6" rx="1" fill="#222222"/>
+</svg></g><text x="748.667" y="600" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="12" fill="#8a8a8a" text-anchor="middle">16px</text><text x="592.6666666666667" y="636" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="26" font-weight="700" fill="#161616">B · B — The Rule</text><text x="592.6666666666667" y="670" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="19" fill="#555">A single elegant rule, punctuated</text><rect x="1065.33" y="150" width="474.667" height="630" rx="18" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><g filter="url(#grey)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" x="1095.33" y="190" width="414.667" height="300" preserveAspectRatio="xMidYMid meet">
+  <title>Concept C — The Fold</title>
+  <desc>A single folded plane — the gesture of cloth lifted and creased. References the product category (sleepwear, a folded garment) without drawing a garment; the crease is the mark's spine.</desc>
+  <rect width="256" height="256" fill="#FFFFFF"/>
+  <!-- left flap, lifted -->
+  <path d="M64 72 Q64 48 96 44 L196 44 Q224 48 224 72 L224 192 Q224 212 204 216 L60 216 Q36 212 36 192 L36 92 Q36 76 52 72 Z" fill="#222222"/>
+  <!-- the fold's shadowed underside (negative space reads as the crease line) -->
+  <path d="M128 44 Q158 60 158 92 L158 184 Q158 204 138 208 L128 208 Q112 208 100 200 L100 120 Q100 88 120 72 Z" fill="#FFFFFF"/>
+  <!-- a soft edge highlight along the crease -->
+  <path d="M128 60 Q144 74 144 96 L144 188" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+  <!-- hem shadow -->
+  <path d="M60 216 Q128 224 204 216 L204 204 Q128 212 60 204 Z" fill="#161616" opacity="0.5"/>
+</svg></g><g filter="url(#grey)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" x="1095.33" y="516" width="64" height="64" preserveAspectRatio="xMidYMid meet">
+  <title>Concept C — The Fold</title>
+  <desc>A single folded plane — the gesture of cloth lifted and creased. References the product category (sleepwear, a folded garment) without drawing a garment; the crease is the mark's spine.</desc>
+  <rect width="256" height="256" fill="#FFFFFF"/>
+  <!-- left flap, lifted -->
+  <path d="M64 72 Q64 48 96 44 L196 44 Q224 48 224 72 L224 192 Q224 212 204 216 L60 216 Q36 212 36 192 L36 92 Q36 76 52 72 Z" fill="#222222"/>
+  <!-- the fold's shadowed underside (negative space reads as the crease line) -->
+  <path d="M128 44 Q158 60 158 92 L158 184 Q158 204 138 208 L128 208 Q112 208 100 200 L100 120 Q100 88 120 72 Z" fill="#FFFFFF"/>
+  <!-- a soft edge highlight along the crease -->
+  <path d="M128 60 Q144 74 144 96 L144 188" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+  <!-- hem shadow -->
+  <path d="M60 216 Q128 224 204 216 L204 204 Q128 212 60 204 Z" fill="#161616" opacity="0.5"/>
+</svg></g><text x="1127.33" y="600" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="12" fill="#8a8a8a" text-anchor="middle">64px</text><g filter="url(#grey)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" x="1185.33" y="548" width="32" height="32" preserveAspectRatio="xMidYMid meet">
+  <title>Concept C — The Fold</title>
+  <desc>A single folded plane — the gesture of cloth lifted and creased. References the product category (sleepwear, a folded garment) without drawing a garment; the crease is the mark's spine.</desc>
+  <rect width="256" height="256" fill="#FFFFFF"/>
+  <!-- left flap, lifted -->
+  <path d="M64 72 Q64 48 96 44 L196 44 Q224 48 224 72 L224 192 Q224 212 204 216 L60 216 Q36 212 36 192 L36 92 Q36 76 52 72 Z" fill="#222222"/>
+  <!-- the fold's shadowed underside (negative space reads as the crease line) -->
+  <path d="M128 44 Q158 60 158 92 L158 184 Q158 204 138 208 L128 208 Q112 208 100 200 L100 120 Q100 88 120 72 Z" fill="#FFFFFF"/>
+  <!-- a soft edge highlight along the crease -->
+  <path d="M128 60 Q144 74 144 96 L144 188" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+  <!-- hem shadow -->
+  <path d="M60 216 Q128 224 204 216 L204 204 Q128 212 60 204 Z" fill="#161616" opacity="0.5"/>
+</svg></g><text x="1201.33" y="600" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="12" fill="#8a8a8a" text-anchor="middle">32px</text><g filter="url(#grey)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" x="1243.33" y="564" width="16" height="16" preserveAspectRatio="xMidYMid meet">
+  <title>Concept C — The Fold</title>
+  <desc>A single folded plane — the gesture of cloth lifted and creased. References the product category (sleepwear, a folded garment) without drawing a garment; the crease is the mark's spine.</desc>
+  <rect width="256" height="256" fill="#FFFFFF"/>
+  <!-- left flap, lifted -->
+  <path d="M64 72 Q64 48 96 44 L196 44 Q224 48 224 72 L224 192 Q224 212 204 216 L60 216 Q36 212 36 192 L36 92 Q36 76 52 72 Z" fill="#222222"/>
+  <!-- the fold's shadowed underside (negative space reads as the crease line) -->
+  <path d="M128 44 Q158 60 158 92 L158 184 Q158 204 138 208 L128 208 Q112 208 100 200 L100 120 Q100 88 120 72 Z" fill="#FFFFFF"/>
+  <!-- a soft edge highlight along the crease -->
+  <path d="M128 60 Q144 74 144 96 L144 188" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+  <!-- hem shadow -->
+  <path d="M60 216 Q128 224 204 216 L204 204 Q128 212 60 204 Z" fill="#161616" opacity="0.5"/>
+</svg></g><text x="1251.33" y="600" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="12" fill="#8a8a8a" text-anchor="middle">16px</text><text x="1095.3333333333335" y="636" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="26" font-weight="700" fill="#161616">C · C — The Fold</text><text x="1095.3333333333335" y="670" font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="19" fill="#555">A folded plane — the crease as spine</text></svg>
