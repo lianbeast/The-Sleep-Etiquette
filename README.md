@@ -1,127 +1,77 @@
-<p align="center">
-  <b>The Sleep Etiquette</b><br>
-  <i>Fashion-first sleepwear. Sleep well. Dress better.</i>
-</p>
+# The Sleep Etiquette
 
-<p align="center">
-  <a href="https://lianbeast.github.io/The-Sleep-Etiquette/"><img alt="Live Site" src="https://img.shields.io/badge/live%20site-view%20now-222222?style=flat-square&labelColor=F7F3EF"></a>
-</p>
+Prelaunch landing page with a separate working area for the future store.
 
----
+## Work locally
 
-## Table of Contents
+From this folder:
 
-- [About](#about)
-- [The Look](#the-look)
-- [Palette & Layout](#palette--layout)
-- [The Pages](#the-pages)
-- [What's Under the Hood](#whats-under-the-hood)
-- [Run It Locally](#run-it-locally)
-- [Getting on the List](#getting-on-the-list)
-
----
-
-## About
-
-The Sleep Etiquette is a small sleepwear label with a simple idea: what you wear to bed
-should be as considered as what you wear to dinner. Nothing scratchy, nothing shapeless,
-nothing you'd be embarrassed to answer the door in.
-
-This is the label's site. Six pages, a working bag, and a coming-soon page for people who
-want first access when we open.
-
-**[Visit the site →](https://lianbeast.github.io/The-Sleep-Etiquette/)**
-
----
-
-## The Look
-
-<p align="center">
-  <img src="docs/coming-soon-preview.png" alt="The Sleep Etiquette coming soon page" width="900">
-</p>
-
----
-
-## Palette & Layout
-
-<p align="center">
-  <img src="docs/palette.png" alt="Colour palette, type and layout system" width="900">
-</p>
-
-The whole site is built from ten colours and two typefaces. Nothing else.
-
-**Neutrals** do the heavy lifting. A warm off-white is the ground every page sits on, pure
-white lifts a section off it, near-black carries all the type, a softer grey carries the
-secondary type, and one pale line is the only divider we ever use.
-
-**Six fabric colours** — Matcha, Butter, Milk, Cocoa, Sky and Petal — are the exact
-colourways the collection sells in. They show up as product swatches *and* as full-bleed
-section backgrounds, so the site never invents a colour the clothes don't have.
-
-**Two typefaces.** An elegant serif for anything you read first, a quiet sans for everything
-else. The serif always wins the argument.
-
-**The layout is one rhythm.** Every section is separated by the same generous band of space,
-and the margin scales with the screen rather than snapping at fixed breakpoints. Grids hold
-three across and drop to one on a phone. Change a number in one place at the top of the
-stylesheet and the whole site re-flows.
-
----
-
-## The Pages
-
-| Page | What you'll find |
-| --- | --- |
-| **Home** | Hero, bestsellers, the set builder, reviews, journal teaser |
-| **Product** | Gallery, size / height / colour pickers, quantity, add to bag |
-| **Standards** | What the fabric actually is and why it matters |
-| **About** | The label itself |
-| **Journal** | Writing, with category filters |
-| **Coming Soon** | One screen, one field, one sign-up |
-
----
-
-## What's Under the Hood
-
-No build step. No framework. No `npm install`.
-
-- **Six HTML pages**, one stylesheet, one script.
-- **The bag is real** — add things, change pages, close the tab. It's still there.
-- **Every page shares one script** that quietly ignores anything it doesn't find, so there's
-  no per-page JavaScript to maintain.
-- **The design lives in variables.** Change one colour at the top of the stylesheet and the
-  whole site follows.
-- **One responsive system.** Two breakpoints — one for tablets, one for phones — and the
-  whole layout adapts to them.
-
----
-
-## Run It Locally
-
-Clone the repo and open `index.html`. That's the whole procedure — it's a real folder of
-files, not an app that needs starting.
-
-If you'd rather serve it:
-
-```bash
-python -m http.server 8000
+```powershell
+python -m http.server 8000 --bind 127.0.0.1
 ```
 
-Then visit `http://localhost:8000`.
+- Landing page: http://localhost:8000/
+- Full store review: http://localhost:8000/_studio/preview.html
+- Store directly: http://localhost:8000/_studio/index.html
 
----
+The review lets you switch between pages and desktop, tablet and mobile widths.
+Store content and imagery are illustrative pending client approval and real stock.
 
-## Getting on the List
+## Where to edit
 
-The coming-soon page is currently in **demo mode** — signups validate and animate, but
-they stay in your browser and aren't sent anywhere.
+- `coming-soon.html`: landing-page source. The publish command synchronizes root `index.html`.
+- `_studio/`: store Home, Product, About, Fabrics, Journal and the review screen.
+- `styles.css`, `editorial.css`, `script.js`, `assets/`: shared styles, interactions and media.
+- `docs/design-direction.md`: design rationale and launch requirements.
 
-To start collecting real emails, give the form a collector URL (Formspree, a Mailchimp or
-ConvertKit endpoint, or your own API). The page already knows what to send. The instructions
-are in a comment right above the form in `coming-soon.html`.
+## Publish only the landing page
 
----
+```powershell
+python build_public.py
+python -m http.server 8001 --directory dist --bind 127.0.0.1
+```
 
-<p align="center">
-  <sub>Made with restraint.</sub>
-</p>
+Check http://localhost:8001/ before deploying. Publish **only `dist/`**.
+The allowlist includes the landing page, its styles, script and bedroom image.
+It excludes store drafts, review screens, reports and brand documents. The build
+rejects unexpected files in an existing `dist` folder instead of silently shipping them.
+
+A host configured to publish the repository root must be reconfigured to publish
+this artifact. Do not deploy the whole repository or rely on an obscure folder
+name for privacy.
+
+### GitHub Pages
+
+The local workflow `.github/workflows/pages.yml` builds with Python and uploads
+only `dist/`. To activate it:
+
+1. Open the repository's **Settings → Pages**.
+2. Under **Build and deployment**, change **Source** to **GitHub Actions**.
+3. Commit and push the current source changes to `main`, including the workflow,
+   `build_public.py`, `coming-soon.html`, shared CSS/JS and bedroom image.
+4. In **Actions**, check **Publish coming-soon page**. When its build and deploy
+   jobs succeed, open https://lianbeast.github.io/The-Sleep-Etiquette/.
+
+Future pushes to `main` rebuild and publish the landing page automatically.
+You can also use **Actions → Publish coming-soon page → Run workflow** after
+the workflow exists on GitHub. Do not change the artifact path to `.`; that
+would include the studio. The workflow runs without npm or Python packages.
+Remote Pages settings and deployment have not been changed by local setup.
+
+If the repository itself is public, visitors can still read draft source on GitHub.
+Use a private repository or an authenticated preview host for confidential client work.
+
+## Email signup
+
+Signup is not connected yet. The page says signup is not open, and submission
+never reports a successful subscription without a configured collector.
+Set `data-endpoint` on the form in `coming-soon.html` when the client provides
+an approved endpoint. It accepts JSON with email, name, source, page and timestamp.
+Then update the availability notice and run `python build_public.py` again.
+
+## Checks
+
+No root npm project or third-party build dependencies are required.
+Use `node --check script.js` and inspect both local previews after shared edits.
+Before launch, confirm imagery, product information, policies, contact details,
+email collection and payments with the client.

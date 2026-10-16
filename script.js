@@ -91,6 +91,7 @@
     // Remember who opened the drawer so focus can return there on close.
     // document.activeElement covers the bag button and every quick-add alike.
     cartOpener = document.activeElement;
+    cartDrawer.inert = false;
     cartDrawer.classList.add('is-open');
     if (backdrop) backdrop.classList.add('is-open');
     cartDrawer.setAttribute('aria-hidden', 'false');
@@ -102,6 +103,7 @@
   function closeCart() {
     if (!cartDrawer || !cartDrawer.classList.contains('is-open')) return;
     cartDrawer.classList.remove('is-open');
+    cartDrawer.inert = true;
     if (backdrop) backdrop.classList.remove('is-open');
     cartDrawer.setAttribute('aria-hidden', 'true');
     if (cartDrawer._focusTrap) { cartDrawer._focusTrap(); cartDrawer._focusTrap = null; }
@@ -208,11 +210,13 @@
     $$(groupSelector).forEach((el) => el.addEventListener('click', () => {
       $$(groupSelector).forEach((item) => item.classList.remove('is-selected'));
       el.classList.add('is-selected');
+      $$(groupSelector).forEach((item) => item.setAttribute('aria-pressed', String(item === el)));
       pdp[key] = el.dataset[key] || el.textContent.trim();
     }));
   }
   wireSelector('[data-size]', 'size');
   wireSelector('[data-height]', 'height');
+  $$('[data-size], [data-height]').forEach((el) => el.setAttribute('aria-pressed', String(el.classList.contains('is-selected'))));
 
   /* ---------- PDP quantity ---------- */
   const qtyValue = $('[data-qty-value]');
@@ -229,6 +233,8 @@
   $$('[data-gallery-thumb]').forEach((thumb) => thumb.addEventListener('click', () => {
     if (!galleryMain) return;
     galleryMain.style.backgroundImage = `url('${thumb.dataset.galleryThumb}')`;
+    galleryMain.setAttribute('aria-label', thumb.getAttribute('aria-label').replace(/^View /, ''));
+    $$('[data-gallery-thumb]').forEach((item) => item.setAttribute('aria-pressed', String(item === thumb)));
     $$('[data-gallery-thumb]').forEach((item) => item.classList.remove('is-active'));
     thumb.classList.add('is-active');
   }));
@@ -238,7 +244,11 @@
     const item = toggle.closest('.accordion-item');
     const expanded = toggle.getAttribute('aria-expanded') === 'true';
     toggle.setAttribute('aria-expanded', String(!expanded));
-    if (item) item.classList.toggle('is-open', !expanded);
+    if (item) {
+      item.classList.toggle('is-open', !expanded);
+      const panel = $('.accordion-content', item);
+      if (panel) panel.hidden = expanded;
+    }
   }));
 
   /* ---------- editorial rules carousel ---------- */
@@ -284,7 +294,7 @@
       return;
     }
     if (input) input.removeAttribute('aria-invalid');
-    if (message) message.textContent = "You're on the list. See you in the morning.";
+    if (message) message.textContent = "This is a store preview. Email signup will open at launch.";
     newsletter.reset();
   });
 
@@ -294,6 +304,7 @@
   const searchClose = $('[data-search-close]');
   function openSearch() {
     if (!searchOverlay) return;
+    searchOverlay.inert = false;
     searchOverlay.classList.add('is-open');
     searchOverlay.setAttribute('aria-hidden', 'false');
     const input = $('input', searchOverlay);
@@ -302,7 +313,10 @@
   }
   function closeSearch() {
     if (!searchOverlay) return;
+    const wasOpen = searchOverlay.classList.contains('is-open');
     searchOverlay.classList.remove('is-open');
+    searchOverlay.inert = true;
+    if (wasOpen && searchToggle) searchToggle.focus();
     searchOverlay.setAttribute('aria-hidden', 'true');
     if (searchOverlay._focusTrap) searchOverlay._focusTrap();
   }
@@ -348,7 +362,7 @@
   }
 
   const saved = readWaitlistStore();
-  if (saved && saved.email) showWaitlistSuccess(saved.email);
+  if (saved && saved.email && waitlistEndpoint) showWaitlistSuccess(saved.email);
 
   if (waitlistForm) {
     waitlistForm.addEventListener('submit', async (event) => {
@@ -371,6 +385,11 @@
         emailInput.removeAttribute('aria-invalid');
       }
       if (waitlistMessage) waitlistMessage.textContent = '';
+
+      if (!waitlistEndpoint) {
+        if (waitlistMessage) waitlistMessage.textContent = 'Email signup is not open yet. Please check back soon.';
+        return;
+      }
 
       const payload = {
         email: value,
@@ -433,6 +452,13 @@
   $$('[data-choice-group] .choice, .swatch, .color-swatches .swatch').forEach((el) => {
     el.setAttribute('aria-pressed', el.classList.contains('is-selected') ? 'true' : 'false');
   });
+
+  $$('[data-review-step]').forEach((button) => button.addEventListener('click', () => {
+    const rail = $('.reviews .journal-grid');
+    if (!rail) return;
+    rail.scrollBy({ left: Number(button.dataset.reviewStep) * rail.clientWidth * 0.8,
+      behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+  }));
 
   renderBag();
   updateSetTotal();

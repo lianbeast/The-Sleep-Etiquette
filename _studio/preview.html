@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>The Sleep Etiquette — Design Review</title>
+  <style>
+    *{box-sizing:border-box}body{margin:0;background:#d6cabb;color:#1c2612;font:14px system-ui,sans-serif}
+    header{background:#fbf7f1;border-bottom:1px solid #a69180;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+    strong{font-family:Georgia,serif;font-size:22px;font-weight:400}header p{margin:4px 0 0;font-size:12px;color:#665541}
+    nav{display:flex;gap:6px;flex-wrap:wrap}button,select,a{font:inherit;color:inherit}button,select{min-height:44px;padding:10px 14px;background:transparent;border:1px solid #a69180;border-radius:2px;cursor:pointer}
+    button[aria-pressed="true"]{color:#f2e0d0;background:#1c2612;border-color:#1c2612}:focus-visible{outline:2px solid #735a45;outline-offset:3px}
+    .controls{display:flex;gap:10px;align-items:center}a{padding:12px;text-underline-offset:4px}
+    main{padding:22px;display:flex;justify-content:center}iframe{width:100%;height:calc(100dvh - 150px);min-height:600px;border:0;background:#f2e0d0;box-shadow:0 8px 30px #40362522}
+    @media(max-width:600px){header{padding:14px}main{padding:12px}iframe{height:75dvh}nav button{padding:8px}}
+  </style>
+</head>
+<body>
+  <header>
+    <div><strong>The Sleep Etiquette</strong><p>Client design review · All products and editorial content are illustrative.</p></div>
+    <nav aria-label="Preview page">
+      <button data-page="../coming-soon.html" aria-pressed="true">Coming soon</button>
+      <button data-page="index.html" aria-pressed="false">Home</button>
+      <button data-page="product.html" aria-pressed="false">Product</button>
+      <button data-page="about.html" aria-pressed="false">About</button>
+      <button data-page="standards.html" aria-pressed="false">Fabrics</button>
+      <button data-page="journal.html" aria-pressed="false">Journal</button>
+    </nav>
+    <div class="controls"><label for="viewport">View</label><select id="viewport"><option value="100%">Desktop</option><option value="768px">Tablet · 768px</option><option value="390px">Mobile · 390px</option><option value="320px">Small mobile · 320px</option></select><a id="open-page" href="../coming-soon.html" target="_blank" rel="noopener">Open page</a></div>
+  </header>
+  <main><iframe src="../coming-soon.html" title="Website design preview" id="site-preview"></iframe></main>
+  <script>
+    const frame = document.getElementById('site-preview');
+    const direct = document.getElementById('open-page');
+    document.querySelectorAll('[data-page]').forEach((button) => button.addEventListener('click', () => {
+      frame.src = button.dataset.page;
+      direct.href = button.dataset.page;
+      document.querySelectorAll('[data-page]').forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+    }));
+    document.getElementById('viewport').addEventListener('change', (event) => {frame.style.width = event.target.value;});
+  </script>
+</body>
+</html>

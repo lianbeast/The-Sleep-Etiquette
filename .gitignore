@@ -31,3 +31,6 @@ dist/
 build/
 # Added by code-review-graph
 .code-review-graph/
+
+# Machine-specific design scan output
+docs/previews/detector.json
