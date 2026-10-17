@@ -6,7 +6,12 @@
   const BAG_KEY = 'tse-bag';
 
   function loadBag() {
-    try { return JSON.parse(localStorage.getItem(BAG_KEY) || '[]'); }
+    try {
+      const items = JSON.parse(localStorage.getItem(BAG_KEY) || '[]');
+      return Array.isArray(items) ? items.filter((item) => item && typeof item.name === 'string' &&
+        Number.isFinite(item.price) && Number.isInteger(item.qty) && item.qty > 0 && item.qty <= 10 &&
+        typeof item.detail === 'string') : [];
+    }
     catch { return []; }
   }
   function saveBag() {
@@ -14,7 +19,14 @@
   }
 
   const state = { bag: loadBag(), top: 68, bottom: 64 };
-  const pdp = { color: 'Milk', size: 'M', height: 'Regular', qty: 1 };
+  const params = new URLSearchParams(location.search);
+  const catalog = window.TSE_PRODUCTS || {};
+  const productKey = Object.hasOwn(catalog, params.get('product')) ? params.get('product') : 'short-sleeve-shirt';
+  const product = catalog[productKey];
+  const colorImages = { Milk: 'milk', Butter: 'butter', Matcha: 'matcha', Cocoa: 'cocoa', Sky: 'blue-hour', Petal: 'dusty-rose' };
+  const pdp = { color: Object.hasOwn(colorImages, params.get('color')) ? params.get('color') : 'Milk', size: '', height: '', qty: 1 };
+  const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 2 });
+  const escapeHTML = (value) => String(value).replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
 
   /* ---------- focus trap utility ---------- */
   function trapFocus(root) {
@@ -23,7 +35,7 @@
       if (e.key !== 'Tab') return;
       // Re-query each Tab: the bag re-renders on add/remove, so the set of
       // tabbable nodes changes while the drawer stays open.
-      const focusable = [...root.querySelectorAll(sel)].filter((el) => el.offsetParent !== null);
+      const focusable = [...root.querySelectorAll(sel)].filter((el) => !el.disabled && el.offsetParent !== null);
       if (!focusable.length) return;
       const first = focusable[0];
       const last = focusable[focusable.length - 1];
@@ -67,43 +79,54 @@
     if (bagCount) { bagCount.textContent = qty; bagCount.classList.toggle('empty', qty === 0); }
     if (drawerCount) drawerCount.textContent = qty;
     const total = state.bag.reduce((sum, item) => sum + item.price * (item.qty || 1), 0);
-    if (subtotal) subtotal.textContent = `$${total}`;
+    if (subtotal) subtotal.textContent = money.format(total);
     if (drawerContent) {
       drawerContent.innerHTML = state.bag.length
         ? state.bag.map((item, index) => {
             const line = item.price * (item.qty || 1);
             return `<div class="bag-item">
-              <div>${item.name}${item.qty > 1 ? ` ×${item.qty}` : ''}<small>${item.detail || 'Milk · M · Regular'}</small></div>
-              <div><span>$${line}</span><button class="remove-item" data-remove="${index}" aria-label="Remove ${item.name}">Remove</button></div>
+              <div>${escapeHTML(item.name)}${item.qty > 1 ? ` ×${item.qty}` : ''}<small>${escapeHTML(item.detail)}</small></div>
+              <div><span>${money.format(line)}</span><button class="remove-item" data-remove="${index}" aria-label="Remove ${escapeHTML(item.name)}">Remove</button></div>
             </div>`;
           }).join('')
         : '<p class="empty-bag">Your bag is waiting for something considered.</p>';
       $$('[data-remove]', drawerContent).forEach((button) => button.addEventListener('click', () => {
-        state.bag.splice(Number(button.dataset.remove), 1);
+        const index = Number(button.dataset.remove);
+        state.bag.splice(index, 1);
         renderBag();
+        const remaining = $$('[data-remove]', drawerContent);
+        (remaining[Math.min(index, remaining.length - 1)] || $('[data-close-cart]', cartDrawer)).focus();
       }));
     }
     saveBag();
   }
 
+  let inertBackground = [];
   function openCart() {
     if (!cartDrawer || cartDrawer.classList.contains('is-open')) return;
     // Remember who opened the drawer so focus can return there on close.
     // document.activeElement covers the bag button and every quick-add alike.
     cartOpener = document.activeElement;
     cartDrawer.inert = false;
+    cartDrawer.hidden = false;
     cartDrawer.classList.add('is-open');
     if (backdrop) backdrop.classList.add('is-open');
     cartDrawer.setAttribute('aria-hidden', 'false');
-    // Move focus in before trapping, or the first Tab still lands on the page behind.
-    const first = $('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])', cartDrawer);
-    if (first) first.focus();
     cartDrawer._focusTrap = trapFocus(cartDrawer);
+    inertBackground = [...document.body.children].filter((el) => el !== cartDrawer && el !== backdrop &&
+      !el.inert && !['SCRIPT', 'STYLE', 'LINK'].includes(el.tagName));
+    inertBackground.forEach((el) => { el.inert = true; });
+    // Visibility has no transition: force the rendered state before focusing.
+    cartDrawer.getBoundingClientRect();
+    $('[data-close-cart]', cartDrawer).focus({ preventScroll: true });
   }
   function closeCart() {
     if (!cartDrawer || !cartDrawer.classList.contains('is-open')) return;
     cartDrawer.classList.remove('is-open');
     cartDrawer.inert = true;
+    cartDrawer.hidden = true;
+    inertBackground.forEach((el) => { el.inert = false; });
+    inertBackground = [];
     if (backdrop) backdrop.classList.remove('is-open');
     cartDrawer.setAttribute('aria-hidden', 'true');
     if (cartDrawer._focusTrap) { cartDrawer._focusTrap(); cartDrawer._focusTrap = null; }
@@ -126,23 +149,35 @@
       const top = ($('[data-top-label]')?.textContent || 'Top').trim();
       const bottom = ($('[data-bottom-label]')?.textContent || 'Bottom').trim();
       const color = ($('[data-color-label]')?.textContent || 'Milk').trim();
-      addToBag(`${top} + ${bottom}`, setPrice(), `${color} · Custom set · 10% set pricing`);
+      const fit = $$('[data-set-fit]');
+      const missing = fit.find((el) => !el.value);
+      if (missing) {
+        $('[data-set-message]').textContent = 'Choose a top size, bottom size and height before adding your set.';
+        missing.focus();
+        return;
+      }
+      $('[data-set-message]').textContent = '';
+      addToBag(`${top} + ${bottom}`, setPrice(), `${color} · Top ${fit[0].value} · Bottom ${fit[1].value} · ${fit[2].value}`);
     } else if (button.closest('.product-detail')) {
-      addToBag(button.dataset.add, button.dataset.price, `${pdp.color} · ${pdp.size} · ${pdp.height}`, pdp.qty);
+      if (!validateFit()) return;
+      addToBag(product ? product.name : button.dataset.add, product ? product.price : button.dataset.price, `${pdp.color} · ${pdp.size} · ${pdp.height}`, pdp.qty);
     } else {
-      addToBag(button.dataset.add, button.dataset.price);
+      // Cards lead to explicit fit selection instead of inventing size/color.
+      location.href = button.dataset.productUrl || 'product.html';
     }
   }));
 
-  /* ---------- buy now ---------- */
-  $$('[data-buy-now]').forEach((button) => button.addEventListener('click', () => {
-    addToBag(button.dataset.buyNow || button.dataset.add, button.dataset.price, `${pdp.color} · ${pdp.size} · ${pdp.height}`, pdp.qty);
-  }));
-
-  /* ---------- checkout (stub) ---------- */
-  $$('[data-checkout]').forEach((button) => button.addEventListener('click', () => {
-    alert('Checkout is not wired to a payment provider. In production, this would redirect to Stripe/Shopify/etc.');
-  }));
+  function validateFit() {
+    const message = $('[data-fit-message]');
+    if (!pdp.size || !pdp.height) {
+      if (message) message.textContent = 'Choose your size and height before adding this piece.';
+      const first = pdp.size ? $('[data-height]') : $('[data-size]');
+      if (first) first.focus();
+      return false;
+    }
+    if (message) message.textContent = '';
+    return true;
+  }
 
   /* ---------- set builder ---------- */
   function setPrice() {
@@ -202,6 +237,12 @@
     const setDetail = $('[data-set-detail]');
     if (setDetail) setDetail.textContent = `${color} · Custom set · 10% set pricing`;
     pdp.color = color;
+    if (product && $('[data-gallery-main]')) updateProductGallery('model');
+    const builderImage = $('.builder-lookbook');
+    if (builderImage && colorImages[color]) {
+      builderImage.style.backgroundImage = `url('../assets/${colorImages[color]}-model-v2.webp')`;
+      builderImage.setAttribute('aria-label', `Illustrative collection photograph in ${color}`);
+    }
   }
   $$('.swatch').forEach((swatch) => swatch.addEventListener('click', () => selectColor(swatch.dataset.color, swatch)));
 
@@ -212,6 +253,7 @@
       el.classList.add('is-selected');
       $$(groupSelector).forEach((item) => item.setAttribute('aria-pressed', String(item === el)));
       pdp[key] = el.dataset[key] || el.textContent.trim();
+      if (pdp.size && pdp.height && $('[data-fit-message]')) $('[data-fit-message]').textContent = '';
     }));
   }
   wireSelector('[data-size]', 'size');
@@ -230,14 +272,34 @@
 
   /* ---------- PDP gallery ---------- */
   const galleryMain = $('[data-gallery-main]');
-  $$('[data-gallery-thumb]').forEach((thumb) => thumb.addEventListener('click', () => {
-    if (!galleryMain) return;
-    galleryMain.style.backgroundImage = `url('${thumb.dataset.galleryThumb}')`;
-    galleryMain.setAttribute('aria-label', thumb.getAttribute('aria-label').replace(/^View /, ''));
-    $$('[data-gallery-thumb]').forEach((item) => item.setAttribute('aria-pressed', String(item === thumb)));
-    $$('[data-gallery-thumb]').forEach((item) => item.classList.remove('is-active'));
-    thumb.classList.add('is-active');
-  }));
+  function updateProductGallery(view) {
+    if (!galleryMain || !product) return;
+    const stem = colorImages[pdp.color];
+    const url = `../assets/${stem}-${view}-v2.webp`;
+    galleryMain.style.backgroundImage = `url('${url}')`;
+    galleryMain.setAttribute('aria-label', `${product.name} · ${pdp.color} · illustrative ${view} photograph`);
+    $$('[data-gallery-view]').forEach((thumb) => {
+      const active = thumb.dataset.galleryView === view;
+      thumb.classList.toggle('is-active', active);
+      thumb.setAttribute('aria-pressed', String(active));
+      thumb.style.backgroundImage = `url('../assets/${stem}-${thumb.dataset.galleryView}-v2.webp')`;
+      thumb.setAttribute('aria-label', `View ${pdp.color} ${thumb.dataset.galleryView} photograph`);
+    });
+  }
+  $$('[data-gallery-view]').forEach((thumb) => thumb.addEventListener('click', () => updateProductGallery(thumb.dataset.galleryView)));
+  if (product && galleryMain) {
+    document.title = `${product.name} — The Sleep Etiquette`;
+    $('#product-title').textContent = product.name;
+    $('.detail-price').textContent = money.format(product.price);
+    $('.product-copy>.section-desc').textContent = `${product.name} in ${product.fabric.toLowerCase()}. A collection concept; final garment details and photography are pending client approval.`;
+    const details = $('.accordion-content p');
+    if (details) details.textContent = `${product.name}. Final cut, measurements and construction details will be confirmed with the product samples.`;
+    $$('[data-size], [data-height]').forEach((el) => {
+      el.classList.remove('is-selected');
+      el.setAttribute('aria-pressed', 'false');
+    });
+    selectColor(pdp.color, $(`[data-color="${pdp.color}"]`));
+  }
 
   /* ---------- accordions ---------- */
   $$('[data-accordion-toggle]').forEach((toggle) => toggle.addEventListener('click', () => {

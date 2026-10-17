@@ -9,10 +9,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" as="image" href="../assets/milk-model-v2.webp" fetchpriority="high" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap" />
     <link rel="stylesheet" href="../styles.css" />
     <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" />
     <link rel="stylesheet" href="../editorial.css?v=earth-1" />
+    <link rel="stylesheet" href="store.css?v=2" />
   </head>
   <body class="product-page">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -42,12 +43,8 @@
         <div class="detail-grid">
           <div class="gallery" data-gallery>
             <div class="gallery-main" data-gallery-main style="background-image:url('../assets/milk-model-v2.webp')" role="img" aria-label="Short sleeve shirt in Milk"></div>
-            <div class="gallery-thumbs">
-              <button class="is-active" data-gallery-thumb="../assets/milk-model-v2.webp" style="background-image:url('../assets/milk-model-v2.webp')" aria-label="View Milk model image"></button>
-              <button data-gallery-thumb="../assets/milk-product-v2.webp" style="background-image:url('../assets/milk-product-v2.webp')" aria-label="View Milk product image"></button>
-              <button data-gallery-thumb="../assets/collection-colorways-v2.webp" style="background-image:url('../assets/collection-colorways-v2.webp')" aria-label="View all six colorways"></button>
-              <button data-gallery-thumb="../assets/matcha-model-v2.webp" style="background-image:url('../assets/matcha-model-v2.webp')" aria-label="View Matcha model image"></button>
-            </div>
+            <div class="gallery-thumbs"><button class="is-active" data-gallery-view="model" aria-pressed="true" aria-label="View Milk model photograph" style="background-image:url('../assets/milk-model-v2.webp')"></button><button data-gallery-view="product" aria-pressed="false" aria-label="View Milk product photograph" style="background-image:url('../assets/milk-product-v2.webp')"></button></div>
+            <p class="image-caption">Illustrative colorway images; actual garment photography coming soon.</p>
           </div>
 
           <div class="product-copy">
@@ -64,6 +61,7 @@
                 <button class="swatch swatch-matcha" data-color="Matcha" aria-label="Matcha"></button>
                 <button class="swatch swatch-cocoa" data-color="Cocoa" aria-label="Cocoa"></button>
                 <button class="swatch swatch-blue-hour" data-color="Sky" aria-label="Sky"></button>
+                <button class="swatch swatch-rose" data-color="Petal" aria-label="Petal"></button>
               </div>
             </div>
 
@@ -87,9 +85,10 @@
               <button class="qty-btn" data-qty-plus aria-label="Increase quantity">+</button>
             </div>
 
+            <p class="fit-message" data-fit-message role="status"></p>
             <div class="detail-actions">
               <button class="u-btn" data-add="Short sleeve shirt" data-price="68">Add to bag <span>↗</span></button>
-              <button class="u-btn buy-now" data-buy-now="Short sleeve shirt" data-price="68">Buy now</button>
+              <span class="purchase-note">Purchasing opens at launch. You can test your bag now.</span>
             </div>
             <p class="builder-savings">Free exchanges · Complimentary shipping over $150</p>
           </div>
@@ -126,8 +125,8 @@
       <section class="bestsellers" aria-labelledby="recent-title">
         <div class="section-heading"><div><h2 id="recent-title">Keep looking<br /><em>around.</em></h2></div></div>
         <div class="product-rail">
-          <article class="product-card"><div class="product-image product-image-blue-hour"><span class="sr-only">Long pant in Sky</span><button class="quick-add" data-add="Long pant" data-price="64">Quick add <span>↗</span></button></div><div class="product-info"><h3>Long pant</h3><p>Signature modal · Sky</p><strong class="price">$64</strong></div></article>
-          <article class="product-card"><div class="product-image product-image-dusty-rose"><span class="sr-only">Pajama short in Petal</span><button class="quick-add" data-add="Pajama short" data-price="58">Quick add <span>↗</span></button></div><div class="product-info"><h3>Pajama short</h3><p>Signature modal · Petal</p><strong class="price">$58</strong></div></article>
+          <article class="product-card"><div class="product-image product-image-blue-hour"><span class="sr-only">Long pant in Sky</span><button class="quick-add" data-add="Long pant" data-product-url="product.html?product=long-pant&amp;color=Sky" data-price="64">Choose size <span>↗</span></button></div><div class="product-info"><h3>Long pant</h3><p>Signature modal · Sky</p><strong class="price">$64</strong></div></article>
+          <article class="product-card"><div class="product-image product-image-dusty-rose"><span class="sr-only">Pajama short in Petal</span><button class="quick-add" data-add="Pajama short" data-product-url="product.html?product=pajama-short&amp;color=Petal" data-price="58">Choose size <span>↗</span></button></div><div class="product-info"><h3>Pajama short</h3><p>Signature modal · Petal</p><strong class="price">$58</strong></div></article>
         </div>
       </section>
 
@@ -151,7 +150,8 @@
     </footer>
 
     <div class="search-overlay" inert data-search-overlay aria-hidden="true"><button class="search-close" aria-label="Close search" data-search-close>×</button><input type="search" placeholder="Search sleepwear, fabrics, stories…" aria-label="Search the site" /></div>
-    <aside class="cart-drawer" inert aria-label="Shopping bag" aria-hidden="true" data-cart-drawer role="dialog" aria-modal="true"><div class="drawer-header"><h3>Your bag <span data-drawer-count>0</span></h3><button class="close-button" aria-label="Close bag" data-close-cart>×</button></div><div class="drawer-content" data-drawer-content><p class="empty-bag">Your bag is waiting for something considered.</p></div><div class="drawer-footer"><div class="drawer-total"><span>Subtotal</span><strong data-subtotal>$0</strong></div><button class="u-btn checkout-button" style="background:var(--after-dark);color:var(--milk)">Checkout <span>↗</span></button><p class="drawer-note">Complimentary shipping over $150. Exchanges are always on us.</p></div></aside><div class="drawer-backdrop" data-close-cart></div>
-    <script src="../script.js?v=earth-1"></script>
+    <aside class="cart-drawer" inert aria-label="Shopping bag" aria-hidden="true" data-cart-drawer role="dialog" aria-modal="true" hidden><div class="drawer-header"><h3>Your bag <span data-drawer-count>0</span></h3><button class="close-button" aria-label="Close bag" data-close-cart>×</button></div><div class="drawer-content" data-drawer-content><p class="empty-bag">Your bag is waiting for something considered.</p></div><div class="drawer-footer"><div class="drawer-total"><span>Subtotal</span><strong data-subtotal>$0</strong></div><button class="u-btn checkout-button" disabled aria-describedby="demo-checkout-note">Checkout opens at launch</button><p class="drawer-note" id="demo-checkout-note">Store preview only. No payments are collected. Complimentary shipping over $150. Exchanges are always on us.</p></div></aside><div class="drawer-backdrop" data-close-cart></div>
+    <script src="catalog.js?v=2"></script>
+    <script src="../script.js?v=store-2"></script>
   </body>
 </html>

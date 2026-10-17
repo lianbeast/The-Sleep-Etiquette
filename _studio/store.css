@@ -1,0 +1,41 @@
+/* Studio-only refinements: UI surfaces and product colors are independent. */
+:root{
+  --product-milk:#f7f3ef;--product-butter:#e8d89a;--product-matcha:#b8c2a8;
+  --product-cocoa:#6b5747;--product-sky:#7d8fa1;--product-petal:#d7bfc0;
+  --focus-on-dark:var(--linen);
+}
+.swatch-milk{background:var(--product-milk)}
+.swatch-butter{background:var(--product-butter)}
+.swatch-matcha{background:var(--product-matcha)}
+.swatch-cocoa{background:var(--product-cocoa)}
+.swatch-blue-hour{background:var(--product-sky)}
+.swatch-rose{background:var(--product-petal)}
+.home-proof :focus-visible{outline-color:var(--focus-on-dark)}
+.cart-drawer{transition:transform .4s var(--ease)}
+.cart-drawer[hidden]{display:none!important}
+.cart-drawer small{display:block;font-size:14px;color:var(--muted);margin-top:8px;line-height:1.5}
+.bag-item{gap:20px;overflow-wrap:anywhere}
+.bag-item>div:last-child{flex-shrink:0;text-align:right}
+.remove-item{min-height:44px;min-width:44px}
+.drawer-content{min-height:0}
+.drawer-header,.drawer-footer{flex-shrink:0}
+.checkout-button:disabled{opacity:1;background:var(--earth)!important;color:var(--linen)!important;cursor:default}
+.purchase-note,.image-caption,.story-status{font-size:14px;line-height:1.6;color:var(--muted)}
+.image-caption{margin:16px 0 0;max-width:55ch}
+.detail-actions{display:flex;flex-direction:column;align-items:stretch}
+.purchase-note{margin-top:8px}
+.fit-message{color:var(--earth);font-size:14px;min-height:24px;margin:16px 0 10px}
+.story-status{margin:20px 0 0;border-top:1px solid var(--line);padding-top:16px}
+.gallery-thumbs{grid-template-columns:repeat(2,minmax(0,1fr))}
+.set-fit{display:grid;grid-template-columns:1fr 1fr;gap:10px 20px;margin-bottom:32px}
+.set-fit label{align-self:center;font-size:14px}
+.set-fit select{width:100%;min-height:48px;font:inherit;font-size:16px;border:1px solid var(--control-edge);background:var(--paper);color:var(--ink);padding:10px}
+.set-fit [role="status"]{grid-column:1/-1;font-size:14px;color:var(--earth);margin:0}
+.form-row input{font-size:16px}
+.home-hero::before,.journal-hero .hero-image,.journal-one{background-image:url('../assets/studio-bedroom-1280.webp')}
+@media(max-width:800px){
+  .home-hero::before,.journal-hero .hero-image,.journal-one{background-image:url('../assets/studio-bedroom-640.webp')}
+  .drawer-header{padding:18px 22px}.drawer-content{padding:22px}.drawer-footer{padding:18px 22px}
+  .detail-copy,.product-copy{min-width:0}
+}
+@media(prefers-reduced-motion:reduce){.cart-drawer{transition:none}}

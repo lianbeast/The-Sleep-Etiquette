@@ -20,6 +20,11 @@ Edit the store HTML here and shared `styles.css`, `editorial.css`, `script.js`
 and `assets/` in the repo root. Shared changes also affect the landing page;
 use page-specific selectors when a change is meant only for the store.
 
+Store-only refinements live in `store.css`, and illustrative product names and
+prices live in `catalog.js`. Product links use `product.html?product=long-pant&color=Sky`
+(for example). Cards ask visitors to choose a fit before adding an item.
+Read `../docs/store-fixes.md` for the completed audit corrections.
+
 For a landing-only publication build run `python build_public.py` and publish
 only `dist/`. Do not deploy the repository root. No hosting changes, commits,
 pushes or deployments are performed by this command.

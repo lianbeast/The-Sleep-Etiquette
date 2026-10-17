@@ -9,10 +9,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" as="image" href="../assets/butter-model-v2.webp" fetchpriority="high" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap" />
     <link rel="stylesheet" href="../styles.css" />
     <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" />
     <link rel="stylesheet" href="../editorial.css?v=earth-1" />
+    <link rel="stylesheet" href="store.css?v=2" />
   </head>
   <body class="standards-page">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -103,7 +104,7 @@
         </div>
         <div class="product-rail">
           <article class="product-card">
-            <div class="product-image product-image-matcha"><span class="sr-only">Short sleeve shirt in Matcha</span><button class="quick-add" data-add="Short sleeve shirt" data-price="68">Quick add <span aria-hidden="true">↗</span></button></div>
+            <div class="product-image product-image-matcha"><span class="sr-only">Short sleeve shirt in Matcha</span><button class="quick-add" data-add="Short sleeve shirt" data-product-url="product.html?product=short-sleeve-shirt&amp;color=Matcha" data-price="68">Choose size <span aria-hidden="true">↗</span></button></div>
             <div class="product-info">
               <div class="rating" aria-label="Rated 4.8 out of 5">★★★★★ <span class="rating-count">4.8 (128)</span></div>
               <h3>Short sleeve shirt</h3>
@@ -112,7 +113,7 @@
             </div>
           </article>
           <article class="product-card">
-            <div class="product-image product-image-butter"><span class="sr-only">Long sleeve shirt in Butter</span><button class="quick-add" data-add="Long sleeve shirt" data-price="76">Quick add <span aria-hidden="true">↗</span></button></div>
+            <div class="product-image product-image-butter"><span class="sr-only">Long sleeve shirt in Butter</span><button class="quick-add" data-add="Long sleeve shirt" data-product-url="product.html?product=long-sleeve-shirt&amp;color=Butter" data-price="76">Choose size <span aria-hidden="true">↗</span></button></div>
             <div class="product-info">
               <div class="rating" aria-label="Rated 4.9 out of 5">★★★★★ <span class="rating-count">4.9 (96)</span></div>
               <h3>Long sleeve shirt</h3>
@@ -121,7 +122,7 @@
             </div>
           </article>
           <article class="product-card">
-            <div class="product-image product-image-milk"><span class="sr-only">Ribbed tank in Milk</span><button class="quick-add" data-add="Ribbed tank" data-price="54">Quick add <span aria-hidden="true">↗</span></button></div>
+            <div class="product-image product-image-milk"><span class="sr-only">Ribbed tank in Milk</span><button class="quick-add" data-add="Ribbed tank" data-product-url="product.html?product=ribbed-tank&amp;color=Milk" data-price="54">Choose size <span aria-hidden="true">↗</span></button></div>
             <div class="product-info">
               <div class="rating" aria-label="Rated 4.7 out of 5">★★★★★ <span class="rating-count">4.7 (84)</span></div>
               <h3>Ribbed tank</h3>
@@ -160,7 +161,8 @@
 
     <div class="search-overlay" inert data-search-overlay aria-hidden="true"><button class="search-close" aria-label="Close search" data-search-close>×</button><input type="search" placeholder="Search sleepwear, fabrics, stories…" aria-label="Search the site" /></div>
 
-    <aside class="cart-drawer" inert aria-label="Shopping bag" aria-hidden="true" data-cart-drawer role="dialog" aria-modal="true"><div class="drawer-header"><h3>Your bag <span data-drawer-count>0</span></h3><button class="close-button" aria-label="Close bag" data-close-cart>×</button></div><div class="drawer-content" data-drawer-content><p class="empty-bag">Your bag is waiting for something considered.</p></div><div class="drawer-footer"><div class="drawer-total"><span>Subtotal</span><strong data-subtotal>$0</strong></div><button class="u-btn checkout-button" style="background:var(--after-dark);color:var(--milk)">Checkout <span aria-hidden="true">↗</span></button><p class="drawer-note">Complimentary shipping over $150. Exchanges are always on us.</p></div></aside><div class="drawer-backdrop" data-close-cart></div>
-    <script src="../script.js?v=earth-1"></script>
+    <aside class="cart-drawer" inert aria-label="Shopping bag" aria-hidden="true" data-cart-drawer role="dialog" aria-modal="true" hidden><div class="drawer-header"><h3>Your bag <span data-drawer-count>0</span></h3><button class="close-button" aria-label="Close bag" data-close-cart>×</button></div><div class="drawer-content" data-drawer-content><p class="empty-bag">Your bag is waiting for something considered.</p></div><div class="drawer-footer"><div class="drawer-total"><span>Subtotal</span><strong data-subtotal>$0</strong></div><button class="u-btn checkout-button" disabled aria-describedby="demo-checkout-note">Checkout opens at launch</button><p class="drawer-note" id="demo-checkout-note">Store preview only. No payments are collected. Complimentary shipping over $150. Exchanges are always on us.</p></div></aside><div class="drawer-backdrop" data-close-cart></div>
+    <script src="catalog.js?v=2"></script>
+    <script src="../script.js?v=store-2"></script>
   </body>
 </html>

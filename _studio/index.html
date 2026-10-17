@@ -8,11 +8,13 @@
     <title>The Sleep Etiquette — Sleep Well. Dress Better.</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="image" href="../assets/prelaunch-bedroom-v2.png" fetchpriority="high" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" />
+    <link rel="preload" as="image" href="../assets/studio-bedroom-640.webp" media="(max-width:800px)" fetchpriority="high" />
+    <link rel="preload" as="image" href="../assets/studio-bedroom-1280.webp" media="(min-width:801px)" fetchpriority="high" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap" />
     <link rel="stylesheet" href="../styles.css" />
     <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" />
     <link rel="stylesheet" href="../editorial.css?v=earth-1" />
+    <link rel="stylesheet" href="store.css?v=2" />
   </head>
   <body class="index-page">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -76,25 +78,25 @@
 
         <div class="home-products">
           <article class="product-card">
-            <div class="product-image product-image-matcha"><span class="sr-only">Short sleeve shirt in Matcha</span><span class="product-badge">Best seller</span><button class="quick-add" data-add="Short sleeve shirt" data-price="68">Quick add <span aria-hidden="true">↗</span></button></div>
+            <div class="product-image product-image-matcha"><span class="sr-only">Short sleeve shirt in Matcha</span><span class="product-badge">Best seller</span><button class="quick-add" data-add="Short sleeve shirt" data-product-url="product.html?product=short-sleeve-shirt&amp;color=Matcha" data-price="68">Choose size <span aria-hidden="true">↗</span></button></div>
             <div class="product-info">
-              <h3><a href="product.html">Short sleeve shirt</a></h3>
+              <h3><a href="product.html?product=short-sleeve-shirt&amp;color=Matcha">Short sleeve shirt</a></h3>
               <p>Signature modal · Matcha</p>
               <strong class="price">$68</strong>
             </div>
           </article>
           <article class="product-card">
-            <div class="product-image product-image-blue-hour"><span class="sr-only">Long pant in Sky</span><button class="quick-add" data-add="Long pant" data-price="64">Quick add <span aria-hidden="true">↗</span></button></div>
+            <div class="product-image product-image-blue-hour"><span class="sr-only">Long pant in Sky</span><button class="quick-add" data-add="Long pant" data-product-url="product.html?product=long-pant&amp;color=Sky" data-price="64">Choose size <span aria-hidden="true">↗</span></button></div>
             <div class="product-info">
-              <h3><a href="product.html">Long pant</a></h3>
+              <h3><a href="product.html?product=long-pant&amp;color=Sky">Long pant</a></h3>
               <p>Signature modal · Sky</p>
               <strong class="price">$64</strong>
             </div>
           </article>
           <article class="product-card">
-            <div class="product-image product-image-dusty-rose"><span class="sr-only">Ribbed tank in Petal</span><button class="quick-add" data-add="Ribbed tank" data-price="54">Quick add <span aria-hidden="true">↗</span></button></div>
+            <div class="product-image product-image-dusty-rose"><span class="sr-only">Ribbed tank in Petal</span><button class="quick-add" data-add="Ribbed tank" data-product-url="product.html?product=ribbed-tank&amp;color=Petal" data-price="54">Choose size <span aria-hidden="true">↗</span></button></div>
             <div class="product-info">
-              <h3><a href="product.html">Ribbed tank</a></h3>
+              <h3><a href="product.html?product=ribbed-tank&amp;color=Petal">Ribbed tank</a></h3>
               <p>Organic cotton blend · Petal</p>
               <strong class="price">$54</strong>
             </div>
@@ -119,7 +121,7 @@
               <button class="u-btn" data-add="Custom set" data-price="118">Add set to bag</button>
             </div>
           </div>
-          <div class="builder-options">
+          <div class="builder-options"><div class="set-fit"><label for="set-top-size">Top size</label><select id="set-top-size" data-set-fit><option value="">Choose size</option><option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>2X</option><option>3X</option><option>4X</option></select><label for="set-bottom-size">Bottom size</label><select id="set-bottom-size" data-set-fit><option value="">Choose size</option><option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>2X</option><option>3X</option><option>4X</option></select><label for="set-height">Height</label><select id="set-height" data-set-fit><option value="">Choose height</option><option>Petite</option><option>Regular</option><option>Tall</option></select><p data-set-message role="status"></p></div>
             <div class="option-group">
               <div class="option-title"><span>Choose a top</span><span data-top-label>Short sleeve shirt</span></div>
               <div class="choice-list" data-choice-group="top">
@@ -227,7 +229,7 @@
       <input type="search" placeholder="Search sleepwear, fabrics, stories…" aria-label="Search the site" />
     </div>
 
-    <aside class="cart-drawer" inert aria-label="Shopping bag" aria-hidden="true" data-cart-drawer role="dialog" aria-modal="true">
+    <aside class="cart-drawer" inert aria-label="Shopping bag" aria-hidden="true" data-cart-drawer role="dialog" aria-modal="true" hidden>
       <div class="drawer-header">
         <h3>Your bag <span data-drawer-count>0</span></h3>
         <button class="close-button" aria-label="Close bag" data-close-cart>×</button>
@@ -240,11 +242,12 @@
           <span>Subtotal</span>
           <strong data-subtotal>$0</strong>
         </div>
-        <button class="u-btn checkout-button" style="background:var(--after-dark);color:var(--milk)" data-checkout>Checkout <span aria-hidden="true">↗</span></button>
-        <p class="drawer-note">Complimentary shipping over $150. Exchanges are always on us.</p>
+        <button class="u-btn checkout-button" disabled aria-describedby="demo-checkout-note">Checkout opens at launch</button>
+        <p class="drawer-note" id="demo-checkout-note">Store preview only. No payments are collected. Complimentary shipping over $150. Exchanges are always on us.</p>
       </div>
     </aside>
     <div class="drawer-backdrop" data-close-cart></div>
-    <script src="../script.js?v=earth-1"></script>
+    <script src="catalog.js?v=2"></script>
+    <script src="../script.js?v=store-2"></script>
   </body>
 </html>
