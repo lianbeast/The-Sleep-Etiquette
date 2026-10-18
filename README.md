@@ -50,7 +50,7 @@ only `dist/`. To activate it:
 3. Commit and push the current source changes to `main`, including the workflow,
    `build_public.py`, `coming-soon.html`, shared CSS/JS and bedroom image.
 4. In **Actions**, check **Publish coming-soon page**. When its build and deploy
-   jobs succeed, open https://lianbeast.github.io/The-Sleep-Etiquette/.
+   jobs succeed, open https://thesleepetiquette.com/.
 
 Future pushes to `main` rebuild and publish the landing page automatically.
 You can also use **Actions → Publish coming-soon page → Run workflow** after
