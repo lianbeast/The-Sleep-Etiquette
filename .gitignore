@@ -34,3 +34,16 @@ build/
 
 # Machine-specific design scan output
 docs/previews/detector.json
+
+# --- graphify knowledge graph ---
+# Keep the main shared outputs; ignore internals, cache, and transcripts.
+graphify-out/*
+!graphify-out/graph.json
+!graphify-out/GRAPH_REPORT.md
+!graphify-out/graph.html
+graphify-out/.**
+graphify-out/cache/
+graphify-out/transcripts/
+graphify-out/cost.json
+graphify-out/manifest.json
+graphify-out/2026*/
