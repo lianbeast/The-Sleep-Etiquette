@@ -35,6 +35,10 @@ build/
 # Machine-specific design scan output
 docs/previews/detector.json
 
+# --- Ad-film production (kept on disk, not part of the site repo) ---
+the-sleep-etiquette-commercial/
+assets/TheSleepEtiquette.mp3
+
 # --- graphify knowledge graph ---
 # Keep the main shared outputs; ignore internals, cache, and transcripts.
 graphify-out/*
