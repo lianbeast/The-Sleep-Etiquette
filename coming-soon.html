@@ -47,6 +47,19 @@
           <h2 class="cs-coming">Coming soon</h2>
           <p class="cs-intro">A new home for elevated sleep essentials, thoughtful details, and a more intentional way to rest.</p>
 
+          <!-- Sneak Peak video preview button -->
+          <button type="button" class="cs-sneak-peak" data-sneak-peak-trigger aria-haspopup="dialog" aria-expanded="false">
+            <span class="cs-sneak-peak-icon" aria-hidden="true">▶</span>
+            <span class="cs-sneak-peak-label">Sneak Peak</span>
+          </button>
+          <!-- Hidden preview video for hover effect -->
+          <div class="cs-sneak-peak-preview" aria-hidden="true">
+            <video class="cs-sneak-peak-video" preload="none" playsinline muted>
+              <source src="assets/film-preview.mp4" type="video/mp4" />
+            </video>
+            <div class="cs-sneak-peak-poster" style="background-image: url('assets/film-poster.jpg')"></div>
+          </div>
+
           <!-- To collect real signups, set data-endpoint to your collector URL
                (e.g. a Formspree endpoint, a Mailchimp/ConvertKit proxy, or your own
                API). It receives JSON: { email, name, source, page, at }.
@@ -67,6 +80,35 @@
         </div>
       </section>
     </main>
+
+    <section class="cs-film" aria-labelledby="cs-film-title">
+      <div class="cs-film-inner">
+        <p class="cs-film-kicker">A first look</p>
+        <h2 id="cs-film-title" class="cs-film-title">The Sleep Etiquette, in motion.</h2>
+        <p class="cs-film-desc">A short film on how the collection comes together.</p>
+        <div class="cs-film-player" data-film-player>
+          <video class="cs-film-video" data-film-video src="assets/film-preview.mp4" poster="assets/film-poster.jpg" preload="none" playsinline></video>
+          <button type="button" class="cs-film-play" data-film-toggle aria-label="Play film" aria-expanded="false">
+            <span class="cs-film-play-icon" aria-hidden="true">
+              <span class="cs-film-play-triangle"></span>
+              <span class="cs-film-play-pause"><span></span><span></span></span>
+            </span>
+            <span class="cs-film-play-label">Play film</span>
+          </button>
+        </div>
+        <p class="cs-film-note">Illustrative preview · Final product imagery and details are pending client approval.</p>
+      </div>
+    </section>
+
+    <!-- Full-screen film pop-up: darkens the page and lifts the film to the foreground. -->
+    <div class="cs-film-backdrop" data-film-backdrop aria-hidden="true"></div>
+    <div class="cs-film-pop" data-film-pop aria-hidden="true">
+      <button type="button" class="cs-film-pop-close" data-film-close aria-label="Close film">
+        <span class="cs-film-pop-close-x" aria-hidden="true"></span>
+        <span class="cs-film-pop-close-label">Close</span>
+      </button>
+      <div class="cs-film-pop-frame" data-film-frame></div>
+    </div>
 
     <footer class="cs-footer">
       <p class="cs-footer-bottom">&copy; 2026 The Sleep Etiquette <span aria-hidden="true">·</span> <a href="mailto:hello@thesleepetiquette.com">Contact</a></p>

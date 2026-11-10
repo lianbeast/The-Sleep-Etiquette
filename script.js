@@ -525,4 +525,175 @@
   renderBag();
   updateSetTotal();
   updateSetPreview();
+
+  /* ---------- coming soon: film preview player ---------- */
+  const filmPlayer = $('[data-film-player]');
+  const filmVideo = $('[data-film-video]', filmPlayer);
+  const filmToggle = $('[data-film-toggle]', filmPlayer);
+  const filmBackdrop = $('[data-film-backdrop]');
+  const filmPop = $('[data-film-pop]');
+  const filmFrame = $('[data-film-frame]', filmPop);
+  const filmClose = $('[data-film-close]', filmPop);
+  // The pop-up reuses the same video element so playback state (position,
+  // muted, src) travels with it instead of starting over.
+  const filmPopVideo = filmVideo ? filmVideo.cloneNode(true) : null;
+  if (filmPopVideo && filmFrame) {
+    filmPopVideo.classList.add('cs-film-pop-video');
+    filmPopVideo.preload = 'auto';
+    filmFrame.appendChild(filmPopVideo);
+  }
+
+  function setFilmState(open) {
+    if (!filmToggle) return;
+    filmToggle.setAttribute('aria-expanded', String(open));
+    filmToggle.setAttribute('aria-label', open ? 'Close film' : 'Play film');
+    const label = $('.cs-film-play-label', filmToggle);
+    if (label) label.textContent = open ? 'Close film' : 'Play film';
+  }
+
+  function openFilm() {
+    if (!filmPop || !filmPopVideo) return;
+    if (filmPopVideo.paused) filmPopVideo.play();
+    filmBackdrop.hidden = false;
+    filmPop.hidden = false;
+    filmBackdrop.setAttribute('aria-hidden', 'false');
+    filmPop.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('no-scroll');
+    setFilmState(true);
+  }
+
+  function closeFilm() {
+    if (!filmPop || !filmPopVideo) return;
+    filmPopVideo.pause();
+    filmPopVideo.currentTime = 0;
+    filmBackdrop.hidden = true;
+    filmPop.hidden = true;
+    filmBackdrop.setAttribute('aria-hidden', 'true');
+    filmPop.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('no-scroll');
+    setFilmState(false);
+    if (filmToggle) filmToggle.focus({ preventScroll: true });
+  }
+
+  if (filmPlayer && filmVideo && filmToggle) {
+    // The inline video never plays in place: any click on the player
+    // (button or surface) lifts the film into the foreground pop-up.
+    filmToggle.addEventListener('click', openFilm);
+    filmVideo.addEventListener('click', openFilm);
+    filmToggle.addEventListener('keydown', (event) => {
+      if (event.key === ' ' || event.key === 'Enter') {
+        event.preventDefault();
+        openFilm();
+      }
+    });
+  }
+
+  if (filmPopVideo) {
+    filmPopVideo.addEventListener('play', openFilm);
+    filmPopVideo.addEventListener('pause', () => {
+      // Only close on user-initiated pause, not while seeking.
+      if (filmPop.hidden) return;
+      if (filmPopVideo.currentTime === 0) closeFilm();
+    });
+    filmPopVideo.addEventListener('ended', closeFilm);
+  }
+
+  if (filmClose) {
+    filmClose.addEventListener('click', closeFilm);
+    filmClose.addEventListener('keydown', (event) => {
+      if (event.key === ' ' || event.key === 'Enter') {
+        event.preventDefault();
+        closeFilm();
+      }
+    });
+  }
+
+  if (filmBackdrop) {
+    filmBackdrop.addEventListener('click', closeFilm);
+  }
+
+  /* ---------- sneak peak video button ---------- */
+const sneakPeakBtn = $('[data-sneak-peak-trigger]');
+const sneakPeakPreview = $('[class*="cs-sneak-peak-preview"]');
+const sneakPeakVideo = $('.cs-sneak-peak-video', sneakPeakPreview);
+let sneakPeakHoverTimer = null;
+
+if (sneakPeakBtn && sneakPeakPreview && sneakPeakVideo) {
+  // Mouse enter: show preview tooltip and play video
+  sneakPeakBtn.addEventListener('mouseenter', () => {
+    // Position the preview near the button
+    const rect = sneakPeakBtn.getBoundingClientRect();
+    sneakPeakPreview.style.top = `${rect.bottom + 12}px`;
+    sneakPeakPreview.style.left = `${rect.left}px`;
+    sneakPeakPreview.setAttribute('aria-hidden', 'false');
+    sneakPeakPreview.classList.add('is-visible');
+
+    // Play the preview video (use setTimeout to ensure element is rendered)
+    sneakPeakHoverTimer = setTimeout(() => {
+      sneakPeakVideo.currentTime = 0;
+      sneakPeakVideo.play().catch(() => {});
+    }, 100);
+  });
+
+  // Mouse leave: hide preview and pause video
+  sneakPeakBtn.addEventListener('mouseleave', () => {
+    clearTimeout(sneakPeakHoverTimer);
+    sneakPeakHoverTimer = null;
+    sneakPeakPreview.classList.remove('is-visible');
+    setTimeout(() => {
+      if (sneakPeakVideo && !sneakPeakVideo.paused) {
+        sneakPeakVideo.pause();
+      }
+      sneakPeakPreview.setAttribute('aria-hidden', 'true');
+    }, 200);
+  });
+
+  // Focus for keyboard users
+  sneakPeakBtn.addEventListener('focus', () => {
+    const rect = sneakPeakBtn.getBoundingClientRect();
+    sneakPeakPreview.style.top = `${rect.bottom + 12}px`;
+    sneakPeakPreview.style.left = `${rect.left}px`;
+    sneakPeakPreview.setAttribute('aria-hidden', 'false');
+    sneakPeakPreview.classList.add('is-visible');
+  });
+
+  sneakPeakBtn.addEventListener('blur', () => {
+    sneakPeakPreview.classList.remove('is-visible');
+    setTimeout(() => {
+      if (sneakPeakVideo && !sneakPeakVideo.paused) {
+        sneakPeakVideo.pause();
+      }
+      sneakPeakPreview.setAttribute('aria-hidden', 'true');
+    }, 200);
+  });
+
+  // Click scrolls to film section and opens the popup
+  sneakPeakBtn.addEventListener('click', () => {
+    // Hide preview
+    clearTimeout(sneakPeakHoverTimer);
+    if (sneakPeakVideo && !sneakPeakVideo.paused) {
+      sneakPeakVideo.pause();
+    }
+    sneakPeakPreview.classList.remove('is-visible');
+    sneakPeakPreview.setAttribute('aria-hidden', 'true');
+
+    // Scroll to film section
+    const filmSection = $('.cs-film');
+    if (filmSection) {
+      filmSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    // Open the film popup after a brief moment
+    setTimeout(openFilm, 300);
+  });
+}
+
+document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+    if (filmPop && !filmPop.hidden) { closeFilm(); return; }
+    if (filmVideo && !filmVideo.paused) {
+      filmVideo.pause();
+      setFilmState(false);
+      if (filmToggle) filmToggle.focus({ preventScroll: true });
+    }
+  });
 })();

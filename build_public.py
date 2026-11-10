@@ -10,6 +10,8 @@ FILES = {
     'editorial.css': 'editorial.css',
     'script.js': 'script.js',
     'assets/prelaunch-bedroom-v2.png': 'assets/prelaunch-bedroom-v2.png',
+    'assets/film-preview.mp4': 'assets/film-preview.mp4',
+    'assets/film-poster.jpg': 'assets/film-poster.jpg',
 }
 
 
