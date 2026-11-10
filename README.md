@@ -19,9 +19,12 @@ Store content and imagery are illustrative pending client approval and real stoc
 
 ## Where to edit
 
-- `coming-soon.html`: landing-page source. The publish command synchronizes root `index.html`.
+- `coming-soon.html`: landing-page source. Root `index.html` is a generated copy
+  produced by the publish command; do not edit it directly.
 - `_studio/`: store Home, Product, About, Fabrics, Journal and the review screen.
 - `styles.css`, `editorial.css`, `script.js`, `assets/`: shared styles, interactions and media.
+  `assets/film-preview.mp4` and `assets/film-poster.jpg` are the coming-soon
+  film player below the hero; the master is `brag-output/brag.mp4`.
 - `docs/design-direction.md`: design rationale and launch requirements.
 
 ## Publish only the landing page
@@ -32,9 +35,10 @@ python -m http.server 8001 --directory dist --bind 127.0.0.1
 ```
 
 Check http://localhost:8001/ before deploying. Publish **only `dist/`**.
-The allowlist includes the landing page, its styles, script and bedroom image.
-It excludes store drafts, review screens, reports and brand documents. The build
-rejects unexpected files in an existing `dist` folder instead of silently shipping them.
+The allowlist includes the landing page, its styles, script, bedroom image and
+the coming-soon film player. It excludes store drafts, review screens, reports
+and brand documents. The build rejects unexpected files in an existing `dist`
+folder instead of silently shipping them.
 
 A host configured to publish the repository root must be reconfigured to publish
 this artifact. Do not deploy the whole repository or rely on an obscure folder

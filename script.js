@@ -525,4 +525,44 @@
   renderBag();
   updateSetTotal();
   updateSetPreview();
+
+  /* ---------- coming soon: film preview player ---------- */
+  const filmPlayer = $('[data-film-player]');
+  const filmVideo = $('[data-film-video]', filmPlayer);
+  const filmToggle = $('[data-film-toggle]', filmPlayer);
+
+  function setFilmState(playing) {
+    if (!filmToggle) return;
+    filmToggle.setAttribute('aria-expanded', String(playing));
+    filmToggle.setAttribute('aria-label', playing ? 'Pause film' : 'Play film');
+    const label = $('.cs-film-play-label', filmToggle);
+    if (label) label.textContent = playing ? 'Pause film' : 'Play film';
+  }
+
+  if (filmPlayer && filmVideo && filmToggle) {
+    filmToggle.addEventListener('click', () => {
+      if (filmVideo.paused) { filmVideo.play(); setFilmState(true); }
+      else { filmVideo.pause(); setFilmState(false); }
+    });
+    filmVideo.addEventListener('click', () => {
+      if (filmVideo.paused) { filmVideo.play(); setFilmState(true); }
+      else { filmVideo.pause(); setFilmState(false); }
+    });
+    filmVideo.addEventListener('play', () => setFilmState(true));
+    filmVideo.addEventListener('pause', () => setFilmState(false));
+    filmVideo.addEventListener('ended', () => setFilmState(false));
+    filmToggle.addEventListener('keydown', (event) => {
+      if (event.key === ' ' || event.key === 'Enter') {
+        event.preventDefault();
+        filmToggle.click();
+      }
+    });
+  }
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape' || !filmVideo || filmVideo.paused) return;
+    filmVideo.pause();
+    setFilmState(false);
+    if (filmToggle) filmToggle.focus({ preventScroll: true });
+  });
 })();

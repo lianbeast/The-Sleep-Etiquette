@@ -30,10 +30,14 @@ terms, reviews, inventory, fabric certifications, test results, prices or size
 ranges as confirmed facts. Existing store copy is preserved as illustrative
 client-review content; the store preview banner states this explicitly.
 
-Replace generated collection imagery with approved real product photography
-when the stock arrives. Collect founder story, garment measurements, care
+The coming-soon page carries a film preview below the hero (a short
+"first look" film built from the HyperFrames composition in `brag-output/`).
+It is illustrative and carries its own disclaimer, so it is not a launch
+dependency. Replace the film's set-builder demonstration and copy with
+approved product content when the stock arrives. Collect founder story, garment measurements, care
 instructions, final prices, policies, social handles and launch timing before
-implementing production commerce.
+implementing production commerce. The film's set-builder demonstration and
+copy are illustrative only; they are not confirmed product terms.
 
 ## Implementation
 

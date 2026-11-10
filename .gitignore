@@ -40,9 +40,32 @@ IMG_0024.PNG
 concepts.png
 The Sleep Etiquette - Brand Deck.pptx.pdf
 
+# --- Root index.html is generated from coming-soon.html by build_public.py ---
+# Edit coming-soon.html; do not hand-edit this copy.
+index.html
+
 # --- Ad-film production (kept on disk, not part of the site repo) ---
 the-sleep-etiquette-commercial/
 assets/TheSleepEtiquette.mp3
+
+# --- HyperFrames promo project (self-contained, not part of the site) ---
+brag-output/
+
+# --- Superseded studio rasters (the store resolves -v2.webp by name pattern) ---
+assets/blue-hour-model.png
+assets/blue-hour-product.png
+assets/butter-model.png
+assets/butter-product.png
+assets/cocoa-model.png
+assets/cocoa-product.png
+assets/collection-colorways-v2.webp
+assets/dusty-rose-model.png
+assets/dusty-rose-product.png
+assets/hero-mix-and-match.png
+assets/matcha-model.png
+assets/matcha-product.png
+assets/milk-model.png
+assets/milk-product.png
 
 # --- graphify knowledge graph ---
 # Keep the main shared outputs; ignore internals, cache, and transcripts.
