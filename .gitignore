@@ -35,6 +35,11 @@ build/
 # Machine-specific design scan output
 docs/previews/detector.json
 
+# --- Local-only brand material (still in git history, not in the working site) ---
+IMG_0024.PNG
+concepts.png
+The Sleep Etiquette - Brand Deck.pptx.pdf
+
 # --- Ad-film production (kept on disk, not part of the site repo) ---
 the-sleep-etiquette-commercial/
 assets/TheSleepEtiquette.mp3
